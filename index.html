@@ -15,7 +15,6 @@
             <ul id="sidemenu">
                 <li><a href="#header">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <i class="fas fa-times" onclick="closemenu()"></i>
@@ -38,16 +37,18 @@
             <div class="about-col-2">
                 <h1 class="sub-title abt">About Me</h1>
                 <p id="abt-me-p">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Hi, I’m David Holland—a Computer Engineering student at the University of Virginia with a passion for digital systems,
+                     programming, and building technology that solves real-world problems. I enjoy bridging hardware and software, 
+                     from designing an 8-bit CPU in VHDL to developing responsive websites with clean and interactive designs. 
+                     Beyond academics, I lead and mentor through Younglife, where I’ve developed strong communication and leadership skills. 
+                     I’m always looking for opportunities to learn, collaborate, and create impactful projects that blend innovation with practical application.
                 </p>
 
                <div class="tab-titles">
                     <p class="tab-links active-link" onclick="opentab('education')">Education</p>
-                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
                     <p class="tab-links" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                    
                 </div>
                 <div class="tab-contents active-tab" id="education">
                     <ul>
@@ -59,88 +60,42 @@
                 </div>
                 <div class="tab-contents" id="experience">
                     <ul>
-                        <li><span>2021- Current</span><br>Designing Web/App Interfaces</li>
-                        <li><span>Web Development</span><br>Web App Developement</li>
-                        <li><span>App Developement</span><br>Building Andriod/IOS apps</li>
+                        <li><span>2024-Current</span><br>Designing and building circuits</li>
+                        <li><span>2021- Current</span><br>Designing Web Interfaces</li>
+                        <li><span>2021-Current</span><br>Software Developer in python</li>
                     </ul>
                 </div>
                 <div class="tab-contents" id="skills">
                     <ul>
-                        <li><span>UI/Ux</span><br>Designing Web/App Interfaces</li>
-                        <li><span>Web Development</span><br>Web App Developement</li>
-                        <li><span>Computer Developement</span><br>Designing Computer Components</li>
+                        <li><span>Programming languages</span><br>VHDL, Python, HTML, CSS, JavaScript</li>
+                        <li><span>Computer software/ frameworks</span><br>Quartus II, GitHub, Microsoft Suites, Google Suites</li>
+                        <li><span>Additional Skills</span><br>Team Management, Customer Service, Communication</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!---------------services----------- -->
-<div id="services">
-    <div class="container">
-        <h1 class="sub-title">My Services</h1>
-        <div class="services-list">
-            <div>
-                <i class="fa-solid fa-code"></i>
-                <h2>Web Design</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <a href="#">Learn More</a>
-            </div>
-            <div>
-                <i class="fa-solid fa-crop"></i>
-                <h2>UI/UX Design</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <a href="#">Learn More</a>
-            </div>
-            <div>
-                <i class="fa-brands fa-app-store-ios"></i>
-                <h2>App Design</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <a href="#">Learn More</a>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!------Portfolio--------->
 <div id="portfolio">
     <div class="container">
         <h1 class="sub-title">My Work</h1>
         <div class="work-list">
             <div class="work">
-                <img src="work-1.png">
+                <img src="image.jpg">
                 <div class="layer">
-                    <h3>Social Media App</h3>
-                    <p>The app connect you to the talented people around teh world.
-                        Download it from the app store.
+                    <h3>Simple Central Processing Unit(CPU)</h3>
+                    <p>This project entailed designing a simple CPU from its basic components.
+                      For More Information.
                     </p>
-                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="cpu.html"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
             </div>
-            <div class="work">
-                <img src="work-2.png">
-                <div class="layer">
-                    <h3>Music App</h3>
-                    <p>The app connect you to the talented people around the world.
-                        Download it from the app store.
-                    </p>
-                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                </div>
-            </div> 
-            <div class="work">
-                <img src="work-3.png">
-                <div class="layer">
-                    <h3>Online Shopping App</h3>
-                    <p>The app connect you to the talented people around teh world.
-                        Download it from the app store.
-                    </p>
-                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                </div>
-            </div>
+        
+            
         </div>
-        <a href="#" class="btn">See More Projects</a>
+       <!----<a href="#" class="btn">See More Projects</a>--->
     </div>
 </div>
 <!-- ------------------------Contact----------------------------->
@@ -152,12 +107,9 @@
                 <p><i class="fa-regular fa-paper-plane"></i>davidlataneholland@gmail.com</p>
                 <p><i class="fa-solid fa-phone"></i>(540)-729-1701</p>
                 <div class="social-icons">
-                    <a href=""><i class="fa-brands fa-facebook"></i></a>
-                    <a href=""><i class="fa-brands fa-twitter-square"></i></a>
-                    <a href=""><i class="fa-brands fa-instagram"></i></a>
-                    <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="www.linkedin.com/in/david-holland-654905351"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
-                <a href="my-cv.pdf" download class="btn btn2">Download Resume</a>
+                <a href="portfolioresume.pdf" download class="btn btn2">Download Resume</a>
             </div>
             <div class="contact-right">
                 <form name="submit-to-google-sheet">
@@ -171,8 +123,7 @@
         </div>
     </div>
     <div class="copyright">
-        <p>Copyright © David Holland</p>
-    </div>
+        <p>Designed By <span>David Holland</span> | &copy; 2023 All rights reserved.</p>
 </div>
 <script>
 

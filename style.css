@@ -164,7 +164,7 @@ nav ul li a:hover::after{
     overflow: hidden;
 }
 .work img{
-    width: 100%;
+    width: 30%;
     border-radius: 10px;
     display: block;
     transition: transform 0.5s;
@@ -173,7 +173,7 @@ nav ul li a:hover::after{
     overflow: hidden;
 }
 .layer{
-    width: 100%;
+    width: 30%;
     height: 0;
     background: linear-gradient(rgba(0,0,0,0.6), #ff004f);
     border-radius: 10px;
@@ -371,8 +371,8 @@ nav .fas{
     background-position: center;
 }
 .header-text-cpu{
-    margin-top: 15%;
-    font-size: 30px;
+    margin-top: 10%;
+    font-size: 28px;
 }
 
 .header-text-cpu p{
@@ -409,4 +409,64 @@ nav .fas{
     width: 100%;
     height: auto;
     margin-top: 20px;
+}
+@media (max-width: 600px) {
+  /* So content isn't squeezed by large side margins on phones */
+  #about_cpu {
+    margin-left: 12px;
+    margin-right: 12px;
+    padding: 24px 0;
+  }
+  .container_cpu { padding: 0 16px; }
+
+  /* Bring the header text into view nicely on iPhone */
+  .header-text-cpu {
+    margin-top: 18vw;     /* just for small screens */
+    font-size: 20px;
+  }
+  .header-text-cpu h2 {
+    font-size: 26px;
+    line-height: 1.2;
+    margin: 10px 0 8px;
+  }
+
+  /* Make the diagram fill the width cleanly on phones */
+  .diagram img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 12px;
+  }
+  .diagram figcaption { font-size: 14px; }
+
+  /* Comfortable list spacing on small screens */
+  #about_cpu ul { padding-left: 1.25rem; }
+  #about_cpu li { margin: 6px 0; }
+
+ .work img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover; /* keeps good cropping if you later fix card heights */
+  }
+
+  /* Ensure overlay layer matches image width */
+  .layer {
+    width: 100%;
+  }
+
+  /* Add some breathing room between projects */
+  .work-list {
+    grid-template-columns: 1fr; /* one project per row on phone */
+    grid-gap: 24px;
+  }
+
+  /* Slightly smaller titles so text fits */
+  .layer h3 {
+    font-size: 18px;
+  }
+  .layer p {
+    font-size: 14px;
+  }
 }

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Central Processing Unit(CPU)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="header_cpu">
+    <div class="container">
+        <nav>
+            <img src="logo.png" class="logo">
+            <ul id="sidemenu">
+                <li><a href="index.html#header">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <i class="fas fa-times" onclick="closemenu()"></i>
+            </ul>
+            <i class="fas fa-bars" onclick="openmenu()"></i>
+        </nav>
+        <div class="header-text-cpu">
+            <h2>Simple Central Processing Unit(CPU)</h2>
+            <p>A 8-Bit CPU designed to perform arithmetic,<br> execute logic, and move and store data.</p>
+            <h2>Overview</h2>
+            <li>8-bit data bus</li>
+            <li>5-bit address bus</li>
+            <li>32 memory locations</li>
+            
+        </div>
+    </div>
+</div>
+<div id="about_cpu">
+    <div class="container_cpu">
+        <div class="cpu-details">
+            <h2>CPU Design Details</h2>
+            <p>The architecture was built from both combinational and sequential components, which I designed, coded, and verified in VHDL. <br><Strong>Key modules included:</Strong></p>
+            <ul>
+                <li><strong>ALU (Arithmetic Logic Unit):</strong> Implemented add, subtract, bitwise AND/OR/XOR, and shift operations.</li>
+                <li><strong>Registers:</strong> Small storage locations for temporary data.</li>
+                <li><strong>Control Unit:</strong> Directs the operation of the CPU and coordinates activities.</li>
+                <li><strong>Memory:</strong> Stores data and instructions for processing.</li>
+                <li><strong>Supporting Components:</strong> Multiplexers, demultiplexers, decoders, encoders, comparators, counters, and timers integrated into the datapath.</li>
+            </ul>
+            
+        </div>
+        <div class="diagram">
+            <p><br>The diagram below illustrates the CPU's architecture, showing the interconnections between the decoders, sequencers, and datapath. (Squared in blue is the control unit)</p>
+            <img src="cpu_diagram.png" alt="CPU Architecture Diagram">
+            
+        </div>
+        
+        <div class="developement process">
+            <h2>Development Process</h2>
+            <p>The CPU was developed using a structured approach:</p>
+            <ul>
+                <li><strong>Design:</strong> Each component was first modeled in Quartus usign VHDL or circuit building.</li>
+                <li><strong>Verification:</strong> Conducted extensive testing using testbenches and simulation tools to ensure functionality and performance.</li>
+                <li><strong>Integration:</strong> Verified modules were connected to form the full datapath and control logic. The system was tested by executing simple programs that combined arithmetic, logic, and memory operations.</li>
+            </ul>
+        </div>
+        <div class="experience">
+            <h2>Experience Gained</h2>
+            <p>This project provided hands-on experience in digital design, VHDL programming, and system integration. It enhanced my understanding of CPU architecture and the complexities involved in building a functional processor.</p>
+            <p><br>Key skills developed include:</p>
+            <ul>
+            <li>Digital system design principles and hardware description languages (VHDL).</li>
+            <li>RTL simulation, verification, and debugging workflows.</li>
+            <li>FPGA development tools (Intel Quartus II).</li>
+            </ul>
+        
+ </div>  
+</body>
+
+</html>

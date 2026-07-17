@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Portfolio Website</title>
-    <link rel="stylesheet" href="style.css">
+    <title>David Holland | Computer Engineer</title>
+    <meta name="description" content="Portfolio of David Holland, a Computer Engineering student at the University of Virginia.">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/4141c56890.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<!-- ---------------------- Header ----------------------- -->
 <div id="header">
     <div class="container">
         <nav>
-            <img src="logo.png" class="logo">
+            <img src="images/logo.png" class="logo" alt="David Holland logo">
             <ul id="sidemenu">
                 <li><a href="#header">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -27,48 +29,47 @@
         </div>
     </div>
 </div>
-<!--------------------------about----------------------------- -->
+
+<!-- ---------------------- About ----------------------- -->
 <div id="about">
     <div class="container">
         <div class="row">
             <div class="about-col-1">
-                <img src="user.jpg">
+                <img src="images/user.jpg" alt="Photo of David Holland">
             </div>
             <div class="about-col-2">
                 <h1 class="sub-title abt">About Me</h1>
                 <p id="abt-me-p">
                     Hi, I’m David Holland—a Computer Engineering student at the University of Virginia with a passion for digital systems,
-                     programming, and building technology that solves real-world problems. I enjoy bridging hardware and software, 
-                     from designing an 8-bit CPU in VHDL to developing responsive websites with clean and interactive designs. 
-                     Beyond academics, I lead and mentor through Younglife, where I’ve developed strong communication and leadership skills. 
-                     I’m always looking for opportunities to learn, collaborate, and create impactful projects that blend innovation with practical application.
+                    programming, and building technology that solves real-world problems. I enjoy bridging hardware and software,
+                    from designing an 8-bit CPU in VHDL to developing responsive websites with clean and interactive designs.
+                    Beyond academics, I lead and mentor through Younglife, where I’ve developed strong communication and leadership skills.
+                    I’m always looking for opportunities to learn, collaborate, and create impactful projects that blend innovation with practical application.
                 </p>
 
-               <div class="tab-titles">
-                    <p class="tab-links active-link" onclick="opentab('education')">Education</p>
-                    <p class="tab-links" onclick="opentab('skills')">Skills</p>
-                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
-                    
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab(event, 'education')">Education</p>
+                    <p class="tab-links" onclick="opentab(event, 'skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab(event, 'experience')">Experience</p>
                 </div>
                 <div class="tab-contents active-tab" id="education">
                     <ul>
-                        <li><span>Unviersity of Virginia</span><br>Class of 2028</li>
+                        <li><span>University of Virginia</span><br>Class of 2028</li>
                         <li><span>School of Engineering</span><br>Computer Engineering</li>
                         <li><span>Focus</span><br>Computer Architecture And High Performance Computing</li>
-                        
                     </ul>
                 </div>
                 <div class="tab-contents" id="experience">
                     <ul>
-                        <li><span>2024-Current</span><br>Designing and building circuits</li>
-                        <li><span>2021- Current</span><br>Designing Web Interfaces</li>
-                        <li><span>2021-Current</span><br>Software Developer in python</li>
+                        <li><span>2024–Current</span><br>Designing and building circuits</li>
+                        <li><span>2021–Current</span><br>Designing Web Interfaces</li>
+                        <li><span>2021–Current</span><br>Software Developer in Python</li>
                     </ul>
                 </div>
                 <div class="tab-contents" id="skills">
                     <ul>
                         <li><span>Programming languages</span><br>VHDL, Python, HTML, CSS, JavaScript</li>
-                        <li><span>Computer software/ frameworks</span><br>Quartus II, GitHub, Microsoft Suites, Google Suites</li>
+                        <li><span>Computer software / frameworks</span><br>Quartus II, GitHub, Microsoft Suites, Google Suites</li>
                         <li><span>Additional Skills</span><br>Team Management, Customer Service, Communication</li>
                     </ul>
                 </div>
@@ -77,28 +78,27 @@
     </div>
 </div>
 
-<!------Portfolio--------->
+<!-- ---------------------- Portfolio ----------------------- -->
 <div id="portfolio">
     <div class="container">
         <h1 class="sub-title">My Work</h1>
         <div class="work-list">
             <div class="work">
-                <img src="image.jpg">
+                <img src="images/image.jpg" alt="Simple CPU project">
                 <div class="layer">
-                    <h3>Simple Central Processing Unit(CPU)</h3>
+                    <h3>Simple Central Processing Unit (CPU)</h3>
                     <p>This project entailed designing a simple CPU from its basic components.
-                      For More Information.
+                        For more information:
                     </p>
-                    <a href="cpu.html"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="cpu.html" aria-label="View CPU project details"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
             </div>
-        
-            
         </div>
-       <!----<a href="#" class="btn">See More Projects</a>--->
+        <!-- <a href="#" class="btn">See More Projects</a> -->
     </div>
 </div>
-<!-- ------------------------Contact----------------------------->
+
+<!-- ---------------------- Contact ----------------------- -->
 <div id="contact">
     <div class="container">
         <div class="row">
@@ -107,7 +107,7 @@
                 <p><i class="fa-regular fa-paper-plane"></i>davidlataneholland@gmail.com</p>
                 <p><i class="fa-solid fa-phone"></i>(540)-729-1701</p>
                 <div class="social-icons">
-                    <a href="www.linkedin.com/in/david-holland-654905351"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.linkedin.com/in/david-holland-654905351" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
                 <a href="resumejuly2026.pdf" download class="btn btn2">Download Resume</a>
             </div>
@@ -115,7 +115,7 @@
                 <form name="submit-to-google-sheet">
                     <input type="text" name="Name" placeholder="Your Name" required>
                     <input type="email" name="Email" placeholder="Your Email" required>
-                    <textarea name="Message"  rows="6" placeholder="Your Message"></textarea>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
                     <button type="submit" class="btn btn2">Submit</button>
                 </form>
                 <span id="msg"></span>
@@ -123,54 +123,10 @@
         </div>
     </div>
     <div class="copyright">
-        <p>Designed By <span>David Holland</span> | &copy; 2023 All rights reserved.</p>
+        <p>Designed By <span>David Holland</span> | &copy; 2026 All rights reserved.</p>
+    </div>
 </div>
-<script>
 
-    var tablinks = document.getElementsByClassName("tab-links");
-    var tabcontents = document.getElementsByClassName("tab-contents");
-
-    function opentab(tabname){
-
-        for(tablink of tablinks){
-            tablink.classList.remove("active-link");
-        }
-        for(tabcontent of tabcontents){
-            tabcontent.classList.remove("active-tab");
-        }
-        event.currentTarget.classList.add("active-link");
-        document.getElementById(tabname).classList.add("active-tab");
-    }
-</script>
-<script>
-
-    var sidemeu = document.getElementById("sidemenu")
-
-    function openmenu(){
-        sidemeu.style.right = "0" 
-    }
-    function closemenu(){
-        sidemeu.style.right = "-150px"
-    }
-
-</script>
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwe_V2vP355yYG-gwaCsPn1T8prIywnMrZDJxYcQJ9qAvdub3ZBO1XSL7Prgr9HZgMzdQ/exec'
-    const form = document.forms['submit-to-google-sheet']
-    const msg = document.getElementById("msg")
-  
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => {
-            msg.innerHTML = "Message sent successfully"
-            setTimeout(function(){
-                msg.innerHTML = ""
-            }, 5000)
-            form.reset()
-        })
-        .catch(error => console.error('Error!', error.message))
-    })
-  </script>
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -381,10 +381,8 @@ nav .fas{
 /*----------css for cpu.html--------------*/
 #header_cpu{
     width: 100%;
-    height: 100vh;
-    background-image: url(../images/background_cpu.png);
-    background-size: cover;
-    background-position: center;
+    background: #080808;
+    padding-bottom: 70px;
 }
 .header-text-cpu{
     margin-top: 15%;
@@ -431,7 +429,7 @@ nav .fas{
     background: #080808;
     padding-bottom: 70px;
 }
-.blackhawk-hero-row{
+.project-hero-row{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -439,43 +437,51 @@ nav .fas{
     flex-wrap: wrap;
     margin-top: 60px;
 }
-#about_blackhawk{
+#about_cpu, #about_blackhawk{
     margin-bottom: 50px;
 }
-#about_blackhawk h2{
+#about_cpu h2, #about_blackhawk h2{
     color: #fff;
     font-size: 28px;
     margin-top: 35px;
 }
+#about_cpu .project-details h2:first-child,
 #about_blackhawk .project-details h2:first-child{
     margin-top: 0;
 }
-#about_blackhawk p{
+#about_cpu p, #about_blackhawk p{
     font-size: 17px;
     line-height: 1.7;
     max-width: 900px;
     margin: 10px 0;
 }
-#about_blackhawk ul li{
+#about_cpu ul li, #about_blackhawk ul li{
     font-size: 17px;
     line-height: 1.6;
     margin: 14px 0;
     max-width: 900px;
 }
-#header_blackhawk .header-text-cpu{
+.project-hero-row .header-text-cpu{
     margin-top: 0;
     flex: 1 1 55%;
     min-width: 300px;
 }
-.blackhawk-preview{
+.project-preview{
     flex: 0 1 420px;
     height: 360px;
     border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+#header_blackhawk .project-preview{
     background: #fff url(../images/blackhawkbackground.png) no-repeat;
     background-size: 260% auto;
     background-position: 83% 0%;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+#header_cpu .project-preview{
+    background: #000 url(../images/background_cpu.png) no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 .tech-tags{
     display: flex;
@@ -522,13 +528,15 @@ nav .fas{
         font-size: 14px;
         padding: 4px 12px;
     }
-    .blackhawk-hero-row{
+    .project-hero-row{
         margin-top: 30px;
         gap: 30px;
     }
-    .blackhawk-preview{
+    .project-preview{
         flex: 1 1 100%;
         height: 180px;
+    }
+    #header_blackhawk .project-preview{
         background-size: 230% auto;
     }
 }

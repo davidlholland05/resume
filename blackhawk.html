@@ -23,29 +23,32 @@
             </ul>
             <i class="fas fa-bars" onclick="openmenu()"></i>
         </nav>
-        <div class="header-text-cpu">
-            <h2>Blackhawk AI</h2>
-            <p>A full-stack Retrieval-Augmented Generation (RAG) system<br> serving semantic search over an ingested document corpus.</p>
-            <div class="tech-tags">
-                <span>Python</span>
-                <span>Flask</span>
-                <span>Supabase</span>
-                <span>PostgreSQL / pgvector</span>
+        <div class="blackhawk-hero-row">
+            <div class="header-text-cpu">
+                <h2>Blackhawk AI</h2>
+                <p>A full-stack Retrieval-Augmented Generation (RAG) system serving semantic search over an ingested document corpus.</p>
+                <div class="tech-tags">
+                    <span>Python</span>
+                    <span>Flask</span>
+                    <span>Supabase</span>
+                    <span>PostgreSQL / pgvector</span>
+                </div>
+                <div class="stat-row">
+                    <div class="stat">
+                        <span class="stat-value">500</span>
+                        <span class="stat-label">chunk corpus</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">&lt;4s</span>
+                        <span class="stat-label">per query</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">Multi-user</span>
+                        <span class="stat-label">deployed web app</span>
+                    </div>
+                </div>
             </div>
-            <div class="stat-row">
-                <div class="stat">
-                    <span class="stat-value">500</span>
-                    <span class="stat-label">chunk corpus</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-value">&lt;4s</span>
-                    <span class="stat-label">per query</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-value">Multi-user</span>
-                    <span class="stat-label">deployed web app</span>
-                </div>
-            </div>
+            <div class="blackhawk-preview" role="img" aria-label="Blackhawk AI web app home screen"></div>
         </div>
     </div>
 </div>
@@ -55,7 +58,8 @@
     <div class="container_cpu">
         <div class="project-details">
             <h2>System Design Details</h2>
-            <p>Blackhawk AI is a Flask and Supabase web application that answers questions against a document corpus using semantic search. <br><strong>Key components include:</strong></p>
+            <p>Blackhawk AI is a Flask and Supabase web application that answers questions against a document corpus using semantic search.</p>
+            <p><strong>Key components include:</strong></p>
             <ul>
                 <li><strong>Document Ingestion:</strong> Multi-format ingestion pipeline that chunks source documents into a 500-chunk searchable corpus.</li>
                 <li><strong>Vector Store:</strong> PostgreSQL with the pgvector extension stores embeddings for fast similarity search.</li>
@@ -76,7 +80,7 @@
         <div class="experience">
             <h2>Experience Gained</h2>
             <p>This project provided end-to-end experience taking a machine-learning-powered application from prototype to deployment.</p>
-            <p><br>Key skills developed include:</p>
+            <p>Key skills developed include:</p>
             <ul>
                 <li>Retrieval-Augmented Generation architecture, embeddings, and vector similarity search.</li>
                 <li>Full-stack web development with Flask, Supabase, and PostgreSQL.</li>

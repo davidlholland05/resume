@@ -479,9 +479,7 @@ nav .fas{
     background-position: 83% 0%;
 }
 #header_cpu .project-preview{
-    background: #000 url(../images/background_cpu.png) no-repeat;
-    background-size: cover;
-    background-position: center;
+    background: #000 url(../images/cpu-preview.jpg) no-repeat center / contain;
 }
 .tech-tags{
     display: flex;

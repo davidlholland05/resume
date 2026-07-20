@@ -488,10 +488,11 @@ nav .fas{
     margin: 10px 0 40px;
 }
 .tech-tags span{
-    font-size: 17px;
+    font-size: 18px;
     color: #fff;
     border-radius: 20px;
     padding: 6px 18px;
+    font-weight: bold;
 }
 .stat-row{
     display: flex;

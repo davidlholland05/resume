@@ -9,6 +9,25 @@ function closemenu() {
     sidemenu.style.right = "-150px";
 }
 
+// ---------- Scroll reveal animations ----------
+const revealEls = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        for (const entry of entries) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("revealed");
+                observer.unobserve(entry.target);
+            }
+        }
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+} else {
+    // Older browsers: show everything immediately
+    revealEls.forEach(el => el.classList.add("revealed"));
+}
+
 // ---------- About-section tabs (index.html only) ----------
 const tablinks = document.getElementsByClassName("tab-links");
 const tabcontents = document.getElementsByClassName("tab-contents");

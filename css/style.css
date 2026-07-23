@@ -10,6 +10,32 @@ html{
 body{
     background: #080808;
     color: #fff;
+    overflow-x: hidden;
+}
+
+/*----------scroll reveal animations--------------*/
+.reveal{
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition-delay: var(--reveal-delay, 0s);
+}
+.reveal-left{
+    transform: translateX(-60px);
+}
+.reveal-right{
+    transform: translateX(60px);
+}
+.reveal.revealed{
+    opacity: 1;
+    transform: none;
+}
+@media (prefers-reduced-motion: reduce){
+    .reveal{
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 #header{
     width: 100%;

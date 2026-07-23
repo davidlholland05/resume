@@ -23,7 +23,7 @@
             </ul>
             <i class="fas fa-bars" onclick="openmenu()"></i>
         </nav>
-        <div class="header-text">
+        <div class="header-text reveal">
             <p>Computer Engineer</p>
             <h1>Hi, I'm <span>David Holland</span><br> from Richmond, VA</h1>
         </div>
@@ -34,10 +34,10 @@
 <div id="about">
     <div class="container">
         <div class="row">
-            <div class="about-col-1">
+            <div class="about-col-1 reveal reveal-left">
                 <img src="images/user.jpg" alt="Photo of David Holland">
             </div>
-            <div class="about-col-2">
+            <div class="about-col-2 reveal reveal-right">
                 <h1 class="sub-title abt">About Me</h1>
                 <p id="abt-me-p">
                     Hi, I’m David Holland. I am a Computer Engineering student at the University of Virginia with a passion for digital systems,
@@ -83,9 +83,9 @@
 <!-- ---------------------- Portfolio ----------------------- -->
 <div id="portfolio">
     <div class="container">
-        <h1 class="sub-title">My Work</h1>
+        <h1 class="sub-title reveal">My Work</h1>
         <div class="work-list">
-            <div class="work">
+            <div class="work reveal">
                 <img src="images/image.jpg" alt="Simple CPU project">
                 <div class="layer">
                     <h3>Simple Central Processing Unit (CPU)</h3>
@@ -95,7 +95,7 @@
                     <a href="cpu.html" aria-label="View CPU project details"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
             </div>
-            <div class="work">
+            <div class="work reveal" style="--reveal-delay: 0.2s">
                 <img src="images/blackhawk.png" alt="Blackhawk AI project">
                 <div class="layer">
                     <h3>Blackhawk AI</h3>
@@ -114,7 +114,7 @@
 <div id="contact">
     <div class="container">
         <div class="row">
-            <div class="contact-left">
+            <div class="contact-left reveal reveal-left">
                 <h1 class="sub-title">Contact Me</h1>
                 <p><i class="fa-regular fa-paper-plane"></i>davidlataneholland@gmail.com</p>
                 <p><i class="fa-solid fa-phone"></i>(540)-729-1701</p>
@@ -124,7 +124,7 @@
                 </div>
                 <a href="resumejuly2026.pdf" download class="btn btn2">Download Resume</a>
             </div>
-            <div class="contact-right">
+            <div class="contact-right reveal reveal-right">
                 <form name="submit-to-google-sheet">
                     <input type="text" name="Name" placeholder="Your Name" required>
                     <input type="email" name="Email" placeholder="Your Email" required>

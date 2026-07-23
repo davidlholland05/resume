@@ -23,7 +23,7 @@
             <i class="fas fa-bars" onclick="openmenu()"></i>
         </nav>
         <div class="project-hero-row">
-            <div class="header-text-cpu">
+            <div class="header-text-cpu reveal reveal-left">
                 <h2>Simple Central Processing Unit (CPU)</h2>
                 <p>An 8-bit CPU designed to perform arithmetic, execute logic, and move and store data.</p>
                 <div class="tech-tags">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-preview" role="img" aria-label="RTL waveform simulation of the CPU in Intel Quartus II"></div>
+            <div class="project-preview reveal reveal-right" style="--reveal-delay: 0.15s" role="img" aria-label="RTL waveform simulation of the CPU in Intel Quartus II"></div>
         </div>
     </div>
 </div>
@@ -54,7 +54,7 @@
 <!-- ---------------------- Project details ----------------------- -->
 <div id="about_cpu">
     <div class="container_cpu">
-        <div class="project-details">
+        <div class="project-details reveal">
             <h2>CPU Design Details</h2>
             <p>The architecture was built from both combinational and sequential components, which I designed, coded, and verified in VHDL.</p>
             <p><strong>Key modules included:</strong></p>
@@ -66,11 +66,11 @@
                 <li><strong>Supporting Components:</strong> Multiplexers, demultiplexers, decoders, encoders, comparators, counters, and timers integrated into the datapath.</li>
             </ul>
         </div>
-        <div class="diagram">
+        <div class="diagram reveal">
             <p>The diagram below illustrates the CPU's architecture, showing the interconnections between the decoders, sequencers, and datapath. (Squared in blue is the control unit)</p>
             <img src="images/cpu_diagram.jpg" alt="CPU Architecture Diagram">
         </div>
-        <div class="development-process">
+        <div class="development-process reveal">
             <h2>Development Process</h2>
             <p>The CPU was developed using a structured approach:</p>
             <ul>
@@ -79,7 +79,7 @@
                 <li><strong>Integration:</strong> Verified modules were connected to form the full datapath and control logic. The system was tested by executing simple programs that combined arithmetic, logic, and memory operations.</li>
             </ul>
         </div>
-        <div class="experience">
+        <div class="experience reveal">
             <h2>Experience Gained</h2>
             <p>This project provided hands-on experience in digital design, VHDL programming, and system integration. It enhanced my understanding of CPU architecture and the complexities involved in building a functional processor.</p>
             <p>Key skills developed include:</p>

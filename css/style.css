@@ -17,7 +17,7 @@ body{
 .reveal{
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 1.4s ease, transform 1.4s ease;
     transition-delay: var(--reveal-delay, 0s);
 }
 .reveal-left{

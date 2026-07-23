@@ -11,21 +11,37 @@ function closemenu() {
 
 // ---------- Scroll reveal animations ----------
 const revealEls = document.querySelectorAll(".reveal");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-if ("IntersectionObserver" in window) {
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+if ("IntersectionObserver" in window && !reducedMotion) {
+    const revealObserver = new IntersectionObserver(entries => {
         for (const entry of entries) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("revealed");
-                observer.unobserve(entry.target);
-            }
+            // Toggle so elements animate in AND back out, in both scroll directions
+            entry.target.classList.toggle("revealed", entry.isIntersecting);
         }
     }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
 
     revealEls.forEach(el => revealObserver.observe(el));
 } else {
-    // Older browsers: show everything immediately
+    // Older browsers / reduced motion: show everything immediately
     revealEls.forEach(el => el.classList.add("revealed"));
+}
+
+// ---------- Parallax header background (index.html only) ----------
+const parallaxHeader = document.getElementById("header");
+
+if (parallaxHeader && !reducedMotion) {
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                // Background drifts down at 40% of scroll speed, so it lags behind the content
+                parallaxHeader.style.backgroundPositionY = `calc(50% + ${window.scrollY * 0.4}px)`;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
 }
 
 // ---------- About-section tabs (index.html only) ----------

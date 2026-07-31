@@ -28,7 +28,7 @@ if ("IntersectionObserver" in window && !reducedMotion) {
 }
 
 // ---------- Parallax header background (index.html only) ----------
-const parallaxHeader = document.getElementById("header");
+//const parallaxHeader = document.getElementById("header");
 
 if (parallaxHeader && !reducedMotion) {
     let ticking = false;

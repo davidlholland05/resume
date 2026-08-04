@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guitar Boost Pedal — Analog Circuit Design &amp; PCB Fabrication</title>
+    <meta name="description" content="An analog guitar boost pedal designed by David Holland: breadboard prototype, KiCad schematic capture, and a fabricated 2-layer PCB.">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/4141c56890.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<!-- ---------------------- Header ----------------------- -->
+<div id="header_boostpedal">
+    <div class="container">
+        <nav>
+            <img src="images/logo.png" class="logo" alt="David Holland logo">
+            <ul id="sidemenu">
+                <li><a href="index.html#header">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <i class="fas fa-times" onclick="closemenu()"></i>
+            </ul>
+            <i class="fas fa-bars" onclick="openmenu()"></i>
+        </nav>
+        <div class="project-hero-row">
+            <div class="header-text-cpu reveal reveal-left">
+                <h2>Guitar Boost Pedal</h2>
+                <p>An analog guitar boost pedal, based on the Electro-Harmonix LPB-1 circuit, taken from breadboard prototype to a fabricated printed circuit board.</p>
+                <div class="tech-tags">
+                    <span>-Analog Circuit Design</span>
+                    <span>-Breadboard Prototyping</span>
+                    <span>-KiCad</span>
+                    <span>-PCB Layout</span>
+                </div>
+                <div class="stat-row">
+                    <div class="stat">
+                        <span class="stat-value">9V</span>
+                        <span class="stat-label">single-transistor boost</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">2-layer</span>
+                        <span class="stat-label">fabricated PCB</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">29.5&times;23mm</span>
+                        <span class="stat-label">board footprint</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-preview reveal reveal-right" style="--reveal-delay: 0.25s" role="img" aria-label="Boost pedal circuit prototyped on a breadboard"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ---------------------- Project details ----------------------- -->
+<div id="about_boostpedal">
+    <div class="container_cpu">
+        <div class="project-details reveal">
+            <h2>Circuit Design Details</h2>
+            <p>The pedal is a single-transistor common-emitter booster that amplifies a guitar signal cleanly from a 9V supply, with a volume potentiometer on the output.</p>
+            <p><strong>Key elements include:</strong></p>
+            <ul>
+                <li><strong>Amplifier Stage:</strong> A 2N3904 NPN transistor in a common-emitter configuration provides the clean gain.</li>
+                <li><strong>Bias Network:</strong> A 430k/43k voltage divider sets the transistor's operating point, with 10k collector and 390&Omega; emitter resistors.</li>
+                <li><strong>Coupling Capacitors:</strong> 100nF input and output capacitors block DC while passing the guitar signal.</li>
+                <li><strong>Volume Control:</strong> An A100k audio-taper potentiometer on the output sets the boost level.</li>
+                <li><strong>Off-board Wiring:</strong> The input/output jacks, potentiometer, and 9V battery connect to the board through pin headers.</li>
+            </ul>
+        </div>
+        <div class="diagram reveal">
+            <p>The KiCad schematic below shows the full circuit, from the input jack through the amplifier stage to the volume pot and output jack.</p>
+            <img src="images/boostpedalschematic.png" alt="KiCad schematic of the boost pedal circuit">
+        </div>
+        <div class="development-process reveal">
+            <h2>Development Process</h2>
+            <p>The pedal moved through three stages, from proof of concept to a manufactured board:</p>
+            <ul>
+                <li><strong>Breadboard Prototype:</strong> Selected component values and verified the amplifier on a breadboard with real jacks, a potentiometer, and a powered supply rail before committing to a layout.</li>
+                <li><strong>KiCad Schematic:</strong> Captured the circuit in KiCad, assigned through-hole footprints, added pin headers for the off-board components, and resolved every Electrical Rules Check (ERC) warning.</li>
+                <li><strong>Printed PCB:</strong> Routed a 2-layer, 29.5&times;23mm board with a stitched ground pour, passed Design Rules Check (DRC) and a manufacturer's free DFM review, then exported Gerber and drill files and sent the board to fabrication (FR-4, HASL finish).</li>
+            </ul>
+        </div>
+        <div class="diagram reveal">
+            <p>The breadboard prototype below was used to verify the circuit before schematic capture and layout.</p>
+            <img src="images/breadboard.jpeg" alt="Boost pedal circuit prototyped on a breadboard">
+        </div>
+        <div class="experience reveal">
+            <h2>Experience Gained</h2>
+            <p>This project provided end-to-end experience taking an analog circuit from an idea on a breadboard to a professionally fabricated PCB.</p>
+            <p>Key skills developed include:</p>
+            <ul>
+                <li>Analog circuit design: transistor biasing, coupling, and audio signal flow.</li>
+                <li>KiCad schematic capture, ERC/DRC verification, and footprint assignment.</li>
+                <li>PCB layout with ground pours and stitching vias, Gerber/drill export, and working with fabrication houses on DFM checks and ordering.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

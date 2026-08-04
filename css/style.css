@@ -419,7 +419,7 @@ nav .fas{
     margin-top: 20px;
     margin-bottom: 65px;
 }
-#about_cpu, #about_blackhawk{
+#about_cpu, #about_blackhawk, #about_boostpedal{
     color: #d4d4d4;
     background-color: #262526;
     margin-left: 50px;
@@ -430,16 +430,16 @@ nav .fas{
 .container_cpu{
     padding: 5px 5%;
 }
-#about_cpu h2, #about_blackhawk h2{
+#about_cpu h2, #about_blackhawk h2, #about_boostpedal h2{
     margin-top: 20px;
     margin-bottom: 10px;
 }
-#about_cpu ul, #about_blackhawk ul{
+#about_cpu ul, #about_blackhawk ul, #about_boostpedal ul{
     margin-top: 20px;
     margin-bottom: 10px;
     padding-left: 40px;
 }
-#about_cpu ul li, #about_blackhawk ul li{
+#about_cpu ul li, #about_blackhawk ul li, #about_boostpedal ul li{
     margin: 10px 0;
 }
 
@@ -450,7 +450,7 @@ nav .fas{
 }
 
 /*----------css for blackhawk.html--------------*/
-#header_blackhawk{
+#header_blackhawk, #header_boostpedal{
     width: 100%;
     background: #080808;
     padding-bottom: 70px;
@@ -463,25 +463,26 @@ nav .fas{
     flex-wrap: wrap;
     margin-top: 60px;
 }
-#about_cpu, #about_blackhawk{
+#about_cpu, #about_blackhawk, #about_boostpedal{
     margin-bottom: 50px;
 }
-#about_cpu h2, #about_blackhawk h2{
+#about_cpu h2, #about_blackhawk h2, #about_boostpedal h2{
     color: #fff;
     font-size: 28px;
     margin-top: 35px;
 }
 #about_cpu .project-details h2:first-child,
-#about_blackhawk .project-details h2:first-child{
+#about_blackhawk .project-details h2:first-child,
+#about_boostpedal .project-details h2:first-child{
     margin-top: 0;
 }
-#about_cpu p, #about_blackhawk p{
+#about_cpu p, #about_blackhawk p, #about_boostpedal p{
     font-size: 17px;
     line-height: 1.7;
     max-width: 900px;
     margin: 10px 0;
 }
-#about_cpu ul li, #about_blackhawk ul li{
+#about_cpu ul li, #about_blackhawk ul li, #about_boostpedal ul li{
     font-size: 17px;
     line-height: 1.6;
     margin: 14px 0;
@@ -506,6 +507,9 @@ nav .fas{
 }
 #header_cpu .project-preview{
     background: #000 url(../images/cpu-preview.jpg) no-repeat center / contain;
+}
+#header_boostpedal .project-preview{
+    background: #000 url(../images/breadboard.jpeg) no-repeat center / cover;
 }
 .tech-tags{
     display: flex;

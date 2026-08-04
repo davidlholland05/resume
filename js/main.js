@@ -14,10 +14,13 @@ const revealEls = document.querySelectorAll(".reveal");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 if ("IntersectionObserver" in window && !reducedMotion) {
-    const revealObserver = new IntersectionObserver(entries => {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
         for (const entry of entries) {
-            // Toggle so elements animate in AND back out, in both scroll directions
-            entry.target.classList.toggle("revealed", entry.isIntersecting);
+            // Reveal once and stop observing, so content never fades back out
+            if (entry.isIntersecting) {
+                entry.target.classList.add("revealed");
+                observer.unobserve(entry.target);
+            }
         }
     }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
 

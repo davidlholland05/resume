@@ -448,6 +448,25 @@ nav .fas{
     height: auto;
     margin-top: 20px;
 }
+.project-figure{
+    margin: 35px auto;
+    max-width: 620px;
+    text-align: center;
+}
+.project-figure img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+}
+.project-figure figcaption{
+    font-size: 15px;
+    font-style: italic;
+    color: #ababab;
+    margin-top: 12px;
+    line-height: 1.5;
+}
 
 /*----------css for blackhawk.html--------------*/
 #header_blackhawk, #header_boostpedal{

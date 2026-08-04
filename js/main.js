@@ -27,23 +27,6 @@ if ("IntersectionObserver" in window && !reducedMotion) {
     revealEls.forEach(el => el.classList.add("revealed"));
 }
 
-// ---------- Parallax header background (index.html only) ----------
-//const parallaxHeader = document.getElementById("header");
-
-if (parallaxHeader && !reducedMotion) {
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                // Background drifts down at 40% of scroll speed, so it lags behind the content
-                parallaxHeader.style.backgroundPositionY = `calc(50% + ${window.scrollY * 0.4}px)`;
-                ticking = false;
-            });
-            ticking = true;
-        }
-    }, { passive: true });
-}
-
 // ---------- About-section tabs (index.html only) ----------
 const tablinks = document.getElementsByClassName("tab-links");
 const tabcontents = document.getElementsByClassName("tab-contents");

@@ -97,9 +97,13 @@
                     </ul>
                 </div>
 
-                <div class="project-preview scroll-fade"
-                     style="--preview: url('images/breadboard.jpeg')"
-                     role="img" aria-label="The boost pedal circuit prototyped on a breadboard"></div>
+                <div class="project-preview scroll-fade">
+                    <picture>
+                        <source srcset="images/boostpedal-preview.webp" type="image/webp">
+                        <img src="images/boostpedal-preview.png" alt="Detail of the boost pedal's KiCad schematic showing the 2N3904 transistor and its bias network"
+                             width="800" height="1004" decoding="async">
+                    </picture>
+                </div>
             </div>
         </div>
     </section>
@@ -201,6 +205,19 @@
                             <dd>Routed a 2-layer, 29.5&times;23mm board with a stitched ground pour, passed Design Rules Check and the manufacturer's free DFM review, then exported Gerber and drill files and sent the board to fabrication in FR-4 with a HASL finish.</dd>
                         </div>
                     </dl>
+
+                    <figure class="project-figure">
+                        <picture>
+                            <source srcset="images/breadboard.webp" type="image/webp">
+                            <img src="images/breadboard.jpeg" alt="The boost pedal circuit on a breadboard, with the volume potentiometer and both jacks wired off-board and a bench supply feeding the rail"
+                                 width="840" height="630" loading="lazy" decoding="async">
+                        </picture>
+                        <figcaption>
+                            The prototype before layout. The 2N3904 stage sits on the board; the volume pot,
+                            input and output jacks, and power are all wired off-board, which is how they ended
+                            up on pin headers in the final schematic.
+                        </figcaption>
+                    </figure>
                 </section>
 
                 <section class="scroll-fade" data-mask>

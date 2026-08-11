@@ -96,9 +96,13 @@
                     </ul>
                 </div>
 
-                <div class="project-preview scroll-fade"
-                     style="--preview: url('images/cpu-preview.jpg')"
-                     role="img" aria-label="RTL waveform simulation of the CPU in Intel Quartus II"></div>
+                <div class="project-preview scroll-fade">
+                    <picture>
+                        <source srcset="images/cpu-preview.webp" type="image/webp">
+                        <img src="images/cpu-preview.jpg" alt="RTL waveform simulation of the CPU in Intel Quartus II"
+                             width="840" height="564" decoding="async">
+                    </picture>
+                </div>
             </div>
         </div>
     </section>

@@ -430,12 +430,19 @@ html.has-scrolled [data-mask]{
 }
 
 .about-photo{
+    display: block;
     border: 1px solid var(--border);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     width: 100%;
     aspect-ratio: 4 / 5;
-    object-fit: cover;
     margin-bottom: var(--space-6);
+    overflow: hidden;
+}
+.about-photo img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .about-bio{
@@ -795,16 +802,23 @@ html.has-scrolled [data-mask]{
 }
 
 /* Preview image comes in as a custom property, set inline per page */
+/* A real <img>, not a CSS background. A url() inside a custom property is
+   resolved against the stylesheet that consumes it, not the inline style that
+   declares it, so `images/x.png` became `/css/images/x.png` and 404'd. This
+   also buys WebP, intrinsic dimensions, and genuine alt text. */
 .project-preview{
     aspect-ratio: 4 / 3;
-    border-radius: var(--radius-lg);
     border: 1px solid var(--border-strong);
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
     background-color: var(--surface-raised);
-    background-image: var(--preview);
-    background-size: var(--preview-size, cover);
-    background-position: var(--preview-position, center);
-    background-repeat: no-repeat;
+    overflow: hidden;
+}
+.project-preview picture,
+.project-preview img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* Body: sticky spec rail + prose */

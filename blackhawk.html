@@ -3,104 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blackhawk AI — Retrieval-Augmented Generation System</title>
-    <meta name="description" content="Blackhawk AI: a full-stack Retrieval-Augmented Generation web application built with Python, Flask, Supabase, and PostgreSQL/pgvector by David Holland.">
+    <title>Blackhawk AI — David Holland</title>
+    <meta name="description" content="Blackhawk AI: a full-stack retrieval-augmented generation web application built with Python, Flask, Supabase, and PostgreSQL/pgvector by David Holland.">
     <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="canonical" href="https://davidlholland.com/blackhawk.html">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Blackhawk AI — Retrieval-Augmented Generation System">
-    <meta property="og:description" content="A full-stack RAG web application built with Python, Flask, Supabase, and PostgreSQL/pgvector.">
+    <meta property="og:title" content="Blackhawk AI — David Holland">
+    <meta property="og:description" content="A full-stack retrieval-augmented generation web app built with Python, Flask, Supabase, and PostgreSQL/pgvector.">
     <meta property="og:url" content="https://davidlholland.com/blackhawk.html">
     <meta property="og:image" content="https://davidlholland.com/images/blackhawkbackground.png">
     <meta name="twitter:card" content="summary">
+
+    <script>document.documentElement.classList.add('js');</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://kit.fontawesome.com/4141c56890.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+        <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+        <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></symbol>
+        <symbol id="i-arrow-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7-7-7 7 7 7"/></symbol>
+        <symbol id="i-arrow-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></symbol>
+    </defs>
+</svg>
+
+<div class="nav-scrim" data-nav-scrim></div>
+
 <!-- ---------------------- Header ----------------------- -->
-<div id="header_blackhawk">
+<header class="site-header">
     <div class="container">
-        <nav>
-            <img src="images/logo.png" class="logo" alt="David Holland logo">
-            <ul id="sidemenu">
-                <li><a href="index.html#header">Home</a></li>
+        <nav class="nav" data-nav aria-label="Primary">
+            <a class="wordmark" href="index.html" aria-label="David Holland — home">
+                <svg viewBox="0 0 32 32" aria-hidden="true">
+                    <path class="mark-light" d="M18.06,0.25 32.00,14.16 31.96,16.69 18.46,3.18 18.20,3.03 17.77,3.11 8.74,12.42 6.21,12.46 6.32,12.24Z M0.04,15.35 13.58,28.89 13.87,29.00 14.30,28.86 23.58,19.58 26.04,19.61 13.87,31.75 0.00,17.88Z"/>
+                    <path class="mark-accent" d="M14.16,0.00 16.69,0.07 4.33,12.71 4.26,13.15 4.37,13.36 4.62,13.54 23.15,13.54 27.52,15.35 27.56,15.46 1.73,15.46 0.25,13.98 1.26,12.86Z M18.02,4.44 18.17,4.48 27.92,14.27 23.66,12.53 16.83,5.71 16.87,5.56Z M4.44,16.58 30.23,16.58 31.71,18.02 31.71,18.13 17.84,32.00 15.39,32.00 15.35,31.93 27.92,19.32 27.95,18.74 27.59,18.46 8.70,18.46Z M4.05,17.70 8.34,19.50 15.17,26.40 13.91,27.63Z"/>
+                </svg>
+                <span>David Holland</span>
+            </a>
+
+            <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="nav-list">
+                <svg aria-hidden="true"><use href="#i-menu"></use></svg>
+                <span class="sr-only">Open menu</span>
+            </button>
+
+            <ul class="nav-list" id="nav-list" data-nav-list>
                 <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#work" aria-current="page">Work</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
-                <i class="fas fa-times" onclick="closemenu()"></i>
+                <li><a class="btn btn--ghost btn--sm nav-cta" href="resume.pdf" download>
+                    <svg aria-hidden="true"><use href="#i-download"></use></svg>Résumé
+                </a></li>
+                <li>
+                    <button class="nav-close" type="button" data-nav-close>
+                        <svg aria-hidden="true"><use href="#i-close"></use></svg>
+                        <span class="sr-only">Close menu</span>
+                    </button>
+                </li>
             </ul>
-            <i class="fas fa-bars" onclick="openmenu()"></i>
         </nav>
-        <div class="project-hero-row">
-            <div class="header-text-cpu reveal reveal-left">
-                <h2>Blackhawk AI</h2>
-                <p>A full-stack Retrieval-Augmented Generation (RAG) system serving semantic search over an ingested document corpus.</p>
-                <div class="tech-tags">
-                    <span>-Python</span>
-                    <span>-Flask</span>
-                    <span>-Supabase</span>
-                    <span>-PostgreSQL / pgvector</span>
+    </div>
+</header>
+
+<main id="main">
+
+    <!-- ---------------------- Hero ----------------------- -->
+    <section class="project-hero" aria-labelledby="project-title">
+        <div class="container">
+            <a class="backlink" href="index.html#work">
+                <svg aria-hidden="true"><use href="#i-arrow-l"></use></svg>All work
+            </a>
+
+            <div class="project-hero-grid">
+                <div class="scroll-fade">
+                    <h1 id="project-title">Blackhawk AI</h1>
+                    <p class="project-summary">
+                        A knowledge-base app built for a client. Semantic search over their teaching
+                        material, from a single-user script to a deployed web app with an admin panel.
+                    </p>
+                    <ul class="chips">
+                        <li>Python</li>
+                        <li>Flask</li>
+                        <li>Supabase</li>
+                        <li>pgvector</li>
+                    </ul>
                 </div>
-                <div class="stat-row">
-                    <div class="stat">
-                        <span class="stat-value">500</span>
-                        <span class="stat-label">chunk corpus</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">&lt;4s</span>
-                        <span class="stat-label">per query</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">Multi-user</span>
-                        <span class="stat-label">deployed web app</span>
-                    </div>
-                </div>
+
+                <div class="project-preview scroll-fade"
+                     style="--preview: url('images/blackhawkbackground.png'); --preview-size: 190% auto; --preview-position: 78% 0%"
+                     role="img" aria-label="The Blackhawk AI web application home screen"></div>
             </div>
-            <div class="project-preview reveal reveal-right" style="--reveal-delay: 0.25s" role="img" aria-label="Blackhawk AI web app home screen"></div>
         </div>
-    </div>
-</div>
+    </section>
 
-<!-- ---------------------- Project details ----------------------- -->
-<div id="about_blackhawk">
-    <div class="container_cpu">
-        <div class="project-details reveal">
-            <h2>System Design Details</h2>
-            <p>Blackhawk AI is a Flask and Supabase web application that answers questions against a document corpus using semantic search.</p>
-            <p><strong>Key components include:</strong></p>
-            <ul>
-                <li><strong>Document Ingestion:</strong> Multi-format ingestion pipeline that chunks source documents into a 500-chunk searchable corpus.</li>
-                <li><strong>Vector Store:</strong> PostgreSQL with the pgvector extension stores embeddings for fast similarity search.</li>
-                <li><strong>Semantic Search:</strong> Queries are embedded and matched against the corpus, returning results in under 4 seconds.</li>
-                <li><strong>Q&amp;A:</strong> The client can add authorized users who can then login and access the system.</li>
-                <li><strong>Admin Panel:</strong> Authenticated dashboard for managing the corpus and monitoring usage.</li>
-            </ul>
-        </div>
-        <div class="development-process reveal">
-            <h2>Development Process</h2>
-            <p>The system grew from a prototype into a deployed application through three stages:</p>
-            <ul>
-                <li><strong>Prototype:</strong> Started as a single-user command-line script for querying documents locally.</li>
-                <li><strong>Scale-up:</strong> Rebuilt as a multi-user Flask web application backed by Supabase, adding anonymous Q&amp;A and an authenticated admin panel.</li>
-                <li><strong>Security Hardening:</strong> Cleared pre-launch security findings for stored XSS, debug-mode exposure, and missing HTTP security headers by adding input sanitization and hardening the Flask configuration.</li>
-            </ul>
-        </div>
-        <div class="experience reveal">
-            <h2>Experience Gained</h2>
-            <p>This project provided end-to-end experience taking a machine-learning-powered application from prototype to deployment.</p>
-            <p>Key skills developed include:</p>
-            <ul>
-                <li>Retrieval-Augmented Generation architecture, embeddings, and vector similarity search.</li>
-                <li>Full-stack web development with Flask, Supabase, and PostgreSQL.</li>
-                <li>Web application security: finding and remediating XSS, configuration, and HTTP-header vulnerabilities.</li>
-            </ul>
-        </div>
-    </div>
-</div>
+    <!-- ---------------------- Body ----------------------- -->
+    <div class="container">
+        <div class="project-layout">
 
-<!-- ---------------------- Footer ----------------------- -->
-<div class="copyright">
-    <p>&copy; 2026 David Holland &middot; Charlottesville, VA</p>
-</div>
+            <aside class="spec-rail" aria-label="Project details">
+                <div class="spec-group">
+                    <span class="spec-label">Role</span>
+                    <span class="spec-value">Sole developer, freelance</span>
+                </div>
+                <div class="spec-group">
+                    <span class="spec-label">Client</span>
+                    <span class="spec-value">Blackhawk Coaching</span>
+                </div>
+                <div class="spec-group">
+                    <span class="spec-label">Timeline</span>
+                    <span class="spec-value">May–Jul 2026</span>
+                </div>
+                <div class="spec-group">
+                    <span class="spec-label">Stack</span>
+                    <div class="spec-value">
+                        <ul>
+                            <li>Python · Flask</li>
+                            <li>Supabase</li>
+                            <li>PostgreSQL · pgvector</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="spec-group">
+                    <span class="spec-label">System</span>
+                    <div class="spec-value">
+                        <ul>
+                            <li><span class="num">700</span>-chunk corpus</li>
+                            <li><span class="num">&lt;4s</span> per query</li>
+                            <li>Multi-user deployment</li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="prose">
+                <section class="scroll-fade" data-mask>
+                    <h2>Overview</h2>
+                    <p>
+                        Blackhawk Coaching had years of teaching material and no way for anyone to find
+                        anything in it. I scoped the work with them and built a knowledge-base app that
+                        answers questions against the whole corpus. Keyword search was not good enough,
+                        because people ask questions using different words than the source material happens
+                        to use. So the documents get split into chunks and embedded once, up front. At query
+                        time the app embeds the question the same way, finds the closest chunks by vector
+                        similarity, and builds the answer from those.
+                    </p>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>Architecture</h2>
+
+                    <div class="diagram">
+                        <svg viewBox="0 0 810 360" role="img" aria-labelledby="diagram-title diagram-desc">
+                            <title id="diagram-title">Blackhawk AI retrieval-augmented generation pipeline</title>
+                            <desc id="diagram-desc">
+                                Two paths meet at a shared vector store. The ingest path runs from source
+                                documents, to chunking into 700 chunks, to embedding, and writes into a
+                                PostgreSQL database with the pgvector extension. The query path runs from a
+                                user query, to embedding, to a top-k similarity match that reads from the
+                                same store, and finally to an answer returned in under four seconds.
+                            </desc>
+
+                            <defs>
+                                <marker id="d-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+                                        markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path class="d-arrowhead" d="M0 0 10 5 0 10z"/>
+                                </marker>
+                            </defs>
+
+                            <!-- Ingest lane -->
+                            <text class="d-lane" x="40" y="24">INGEST</text>
+
+                            <rect class="d-box" x="40"  y="40" width="150" height="54" rx="8"/>
+                            <text class="d-title" x="115" y="62" text-anchor="middle">Documents</text>
+                            <text class="d-sub"   x="115" y="79" text-anchor="middle">multi-format</text>
+
+                            <rect class="d-box" x="240" y="40" width="150" height="54" rx="8"/>
+                            <text class="d-title" x="315" y="62" text-anchor="middle">Chunk</text>
+                            <text class="d-sub"   x="315" y="79" text-anchor="middle">700 chunks</text>
+
+                            <rect class="d-box" x="440" y="40" width="150" height="54" rx="8"/>
+                            <text class="d-title" x="515" y="62" text-anchor="middle">Embed</text>
+                            <text class="d-sub"   x="515" y="79" text-anchor="middle">vectors</text>
+
+                            <path class="d-flow" d="M190 67h42"/>
+                            <path class="d-flow" d="M390 67h42"/>
+                            <path class="d-flow" d="M515 94v53"/>
+
+                            <!-- Shared store -->
+                            <rect class="d-box d-box--accent" x="415" y="155" width="200" height="64" rx="8"/>
+                            <text class="d-title" x="515" y="182" text-anchor="middle">PostgreSQL</text>
+                            <text class="d-sub"   x="515" y="201" text-anchor="middle">pgvector store</text>
+
+                            <path class="d-flow" d="M515 219v53"/>
+
+                            <!-- Query lane -->
+                            <text class="d-lane" x="40" y="264">QUERY</text>
+
+                            <rect class="d-box" x="40"  y="280" width="150" height="54" rx="8"/>
+                            <text class="d-title" x="115" y="302" text-anchor="middle">User query</text>
+                            <text class="d-sub"   x="115" y="319" text-anchor="middle">authenticated</text>
+
+                            <rect class="d-box" x="240" y="280" width="150" height="54" rx="8"/>
+                            <text class="d-title" x="315" y="302" text-anchor="middle">Embed</text>
+                            <text class="d-sub"   x="315" y="319" text-anchor="middle">same model</text>
+
+                            <rect class="d-box" x="440" y="280" width="150" height="54" rx="8"/>
+                            <text class="d-title" x="515" y="302" text-anchor="middle">Top-k match</text>
+                            <text class="d-sub"   x="515" y="319" text-anchor="middle">cosine similarity</text>
+
+                            <rect class="d-box d-box--accent" x="640" y="280" width="150" height="54" rx="8"/>
+                            <text class="d-title" x="715" y="302" text-anchor="middle">Answer</text>
+                            <text class="d-sub"   x="715" y="319" text-anchor="middle">&lt; 4 seconds</text>
+
+                            <path class="d-flow" d="M190 307h42"/>
+                            <path class="d-flow" d="M390 307h42"/>
+                            <path class="d-flow" d="M590 307h42"/>
+                        </svg>
+                    </div>
+
+                    <dl>
+                        <div>
+                            <dt>Document ingestion</dt>
+                            <dd>A multi-format pipeline splits source documents into a 700-chunk searchable corpus.</dd>
+                        </div>
+                        <div>
+                            <dt>Vector store</dt>
+                            <dd>PostgreSQL with the pgvector extension holds the embeddings and serves similarity search.</dd>
+                        </div>
+                        <div>
+                            <dt>Semantic search</dt>
+                            <dd>Queries are embedded with the same model as the corpus and matched by vector similarity, returning results in under four seconds.</dd>
+                        </div>
+                        <div>
+                            <dt>Access control</dt>
+                            <dd>The client authorizes users, who then sign in to query the corpus.</dd>
+                        </div>
+                        <div>
+                            <dt>Admin panel</dt>
+                            <dd>An authenticated dashboard for managing the corpus and monitoring usage.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>Build process</h2>
+                    <dl>
+                        <div>
+                            <dt>Prototype</dt>
+                            <dd>Started as a single-user command-line script for querying documents locally.</dd>
+                        </div>
+                        <div>
+                            <dt>Scale-up</dt>
+                            <dd>Rebuilt as a multi-user Flask web application backed by Supabase, adding sign-in and an authenticated admin panel.</dd>
+                        </div>
+                        <div>
+                            <dt>Security hardening</dt>
+                            <dd>Cleared pre-launch findings for stored XSS, debug-mode exposure, and missing HTTP security headers by adding input sanitization and hardening the Flask configuration.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>Outcome</h2>
+                    <p>
+                        Delivered to the client and in use, with sign-in, an admin panel for managing the
+                        corpus, and queries that come back in under four seconds over 700 chunks. The
+                        pre-launch security review raised three issues and all three are fixed.
+                    </p>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>What I'd do differently</h2>
+                    <p>
+                        I tuned chunk size and top-k by reading the answers and deciding whether they looked
+                        better. That works up to a point, but it means I can't say how much any single change
+                        actually helped. Next time I'd write a small set of test questions with known good
+                        answers first, so the tuning is measurable. The other thing is ordering. I ran the
+                        security review after the admin panel was finished, and sanitizing input and setting
+                        headers would have been much less work if I'd built for them from the start instead
+                        of going back through code that already worked.
+                    </p>
+                </section>
+            </div>
+
+        </div>
+
+        <nav class="project-nav" aria-label="Project">
+            <a href="cpu.html"><svg aria-hidden="true"><use href="#i-arrow-l"></use></svg>Previous: 8-Bit CPU</a>
+            <a href="boostpedal.html">Next: Guitar Boost Pedal <svg aria-hidden="true"><use href="#i-arrow-r"></use></svg></a>
+        </nav>
+    </div>
+
+</main>
 
 <script src="js/main.js"></script>
 </body>

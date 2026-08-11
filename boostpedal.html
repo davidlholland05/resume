@@ -3,112 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guitar Boost Pedal — Analog Circuit Design &amp; PCB Fabrication</title>
+    <title>Guitar Boost Pedal — David Holland</title>
     <meta name="description" content="An analog guitar boost pedal designed by David Holland: breadboard prototype, KiCad schematic capture, and a fabricated 2-layer PCB.">
     <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="canonical" href="https://davidlholland.com/boostpedal.html">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Guitar Boost Pedal — Analog Circuit Design &amp; PCB Fabrication">
+    <meta property="og:title" content="Guitar Boost Pedal — David Holland">
     <meta property="og:description" content="An analog guitar boost pedal: breadboard prototype, KiCad schematic capture, and a fabricated 2-layer PCB.">
     <meta property="og:url" content="https://davidlholland.com/boostpedal.html">
     <meta property="og:image" content="https://davidlholland.com/images/boostpedalschematic.png">
     <meta name="twitter:card" content="summary">
+
+    <script>document.documentElement.classList.add('js');</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://kit.fontawesome.com/4141c56890.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+        <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+        <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></symbol>
+        <symbol id="i-arrow-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7-7-7 7 7 7"/></symbol>
+        <symbol id="i-arrow-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></symbol>
+    </defs>
+</svg>
+
+<div class="nav-scrim" data-nav-scrim></div>
+
 <!-- ---------------------- Header ----------------------- -->
-<div id="header_boostpedal">
+<header class="site-header">
     <div class="container">
-        <nav>
-            <img src="images/logo.png" class="logo" alt="David Holland logo">
-            <ul id="sidemenu">
-                <li><a href="index.html#header">Home</a></li>
+        <nav class="nav" data-nav aria-label="Primary">
+            <a class="wordmark" href="index.html" aria-label="David Holland — home">
+                <svg viewBox="0 0 32 32" aria-hidden="true">
+                    <path class="mark-light" d="M18.06,0.25 32.00,14.16 31.96,16.69 18.46,3.18 18.20,3.03 17.77,3.11 8.74,12.42 6.21,12.46 6.32,12.24Z M0.04,15.35 13.58,28.89 13.87,29.00 14.30,28.86 23.58,19.58 26.04,19.61 13.87,31.75 0.00,17.88Z"/>
+                    <path class="mark-accent" d="M14.16,0.00 16.69,0.07 4.33,12.71 4.26,13.15 4.37,13.36 4.62,13.54 23.15,13.54 27.52,15.35 27.56,15.46 1.73,15.46 0.25,13.98 1.26,12.86Z M18.02,4.44 18.17,4.48 27.92,14.27 23.66,12.53 16.83,5.71 16.87,5.56Z M4.44,16.58 30.23,16.58 31.71,18.02 31.71,18.13 17.84,32.00 15.39,32.00 15.35,31.93 27.92,19.32 27.95,18.74 27.59,18.46 8.70,18.46Z M4.05,17.70 8.34,19.50 15.17,26.40 13.91,27.63Z"/>
+                </svg>
+                <span>David Holland</span>
+            </a>
+
+            <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="nav-list">
+                <svg aria-hidden="true"><use href="#i-menu"></use></svg>
+                <span class="sr-only">Open menu</span>
+            </button>
+
+            <ul class="nav-list" id="nav-list" data-nav-list>
                 <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#work" aria-current="page">Work</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
-                <i class="fas fa-times" onclick="closemenu()"></i>
+                <li><a class="btn btn--ghost btn--sm nav-cta" href="resume.pdf" download>
+                    <svg aria-hidden="true"><use href="#i-download"></use></svg>Résumé
+                </a></li>
+                <li>
+                    <button class="nav-close" type="button" data-nav-close>
+                        <svg aria-hidden="true"><use href="#i-close"></use></svg>
+                        <span class="sr-only">Close menu</span>
+                    </button>
+                </li>
             </ul>
-            <i class="fas fa-bars" onclick="openmenu()"></i>
         </nav>
-        <div class="project-hero-row">
-            <div class="header-text-cpu reveal reveal-left">
-                <h2>Guitar Boost Pedal</h2>
-                <p>An analog guitar boost pedal, based on the Electro-Harmonix LPB-1 circuit, taken from breadboard prototype to a fabricated printed circuit board.</p>
-                <div class="tech-tags">
-                    <span>-Analog Circuit Design</span>
-                    <span>-Breadboard Prototyping</span>
-                    <span>-KiCad</span>
-                    <span>-PCB Layout</span>
+    </div>
+</header>
+
+<main id="main">
+
+    <!-- ---------------------- Hero ----------------------- -->
+    <section class="project-hero" aria-labelledby="project-title">
+        <div class="container">
+            <a class="backlink" href="index.html#work">
+                <svg aria-hidden="true"><use href="#i-arrow-l"></use></svg>All work
+            </a>
+
+            <div class="project-hero-grid">
+                <div class="scroll-fade">
+                    <h1 id="project-title">Guitar Boost Pedal</h1>
+                    <p class="project-summary">
+                        A single-transistor analog boost based on the Electro-Harmonix LPB-1. It started as
+                        a breadboard prototype and ended up as a fabricated two-layer board.
+                    </p>
+                    <ul class="chips">
+                        <li>Analog Design</li>
+                        <li>Breadboard</li>
+                        <li>KiCad</li>
+                        <li>PCB Layout</li>
+                    </ul>
                 </div>
-                <div class="stat-row">
-                    <div class="stat">
-                        <span class="stat-value">9V</span>
-                        <span class="stat-label">single-transistor boost</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">2-layer</span>
-                        <span class="stat-label">fabricated PCB</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">29.5&times;23mm</span>
-                        <span class="stat-label">board footprint</span>
-                    </div>
-                </div>
+
+                <div class="project-preview scroll-fade"
+                     style="--preview: url('images/breadboard.jpeg')"
+                     role="img" aria-label="The boost pedal circuit prototyped on a breadboard"></div>
             </div>
-            <div class="project-preview reveal reveal-right" style="--reveal-delay: 0.25s" role="img" aria-label="Boost pedal circuit prototyped on a breadboard"></div>
         </div>
-    </div>
-</div>
+    </section>
 
-<!-- ---------------------- Project details ----------------------- -->
-<div id="about_boostpedal">
-    <div class="container_cpu">
-        <div class="project-details reveal">
-            <h2>Circuit Design Details</h2>
-            <p>The pedal is a single-transistor common-emitter booster that amplifies a guitar signal cleanly from a 9V supply, with a volume potentiometer on the output.</p>
-            <p><strong>Key elements include:</strong></p>
-            <ul>
-                <li><strong>Amplifier Stage:</strong> A 2N3904 NPN transistor in a common-emitter configuration provides the clean gain.</li>
-                <li><strong>Bias Network:</strong> A 430k/43k voltage divider sets the transistor's operating point, with 10k collector and 390&Omega; emitter resistors.</li>
-                <li><strong>Coupling Capacitors:</strong> 100nF input and output capacitors block DC while passing the guitar signal.</li>
-                <li><strong>Volume Control:</strong> An A100k audio-taper potentiometer on the output sets the boost level.</li>
-                <li><strong>Off-board Wiring:</strong> The input/output jacks, potentiometer, and 9V battery connect to the board through pin headers.</li>
-            </ul>
-        </div>
-        <figure class="project-figure reveal">
-            <img src="images/boostpedalschematic.png" alt="KiCad schematic of the boost pedal circuit">
-            <figcaption>KiCad schematic of the full circuit — from the input jack through the 2N3904 amplifier stage to the volume pot and output jack.</figcaption>
-        </figure>
-        <div class="development-process reveal">
-            <h2>Development Process</h2>
-            <p>The pedal moved through three stages, from proof of concept to a manufactured board:</p>
-            <ul>
-                <li><strong>Breadboard Prototype:</strong> Selected component values and verified the amplifier on a breadboard with real jacks, a potentiometer, and a powered supply rail before committing to a layout.</li>
-                <li><strong>KiCad Schematic:</strong> Captured the circuit in KiCad, assigned through-hole footprints, added pin headers for the off-board components, and resolved every Electrical Rules Check (ERC) warning.</li>
-                <li><strong>Printed PCB:</strong> Routed a 2-layer, 29.5&times;23mm board with a stitched ground pour, passed Design Rules Check (DRC) and a manufacturer's free DFM review, then exported Gerber and drill files and sent the board to fabrication (FR-4, HASL finish).</li>
-            </ul>
-        </div>
-        <figure class="project-figure reveal">
-            <img src="images/breadboard.jpeg" alt="Boost pedal circuit prototyped on a breadboard">
-            <figcaption>The breadboard prototype, with off-board jacks, potentiometer, and power — used to verify the circuit before schematic capture and layout.</figcaption>
-        </figure>
-        <div class="experience reveal">
-            <h2>Experience Gained</h2>
-            <p>This project provided end-to-end experience taking an analog circuit from an idea on a breadboard to a professionally fabricated PCB.</p>
-            <p>Key skills developed include:</p>
-            <ul>
-                <li>Analog circuit design: transistor biasing, coupling, and audio signal flow.</li>
-                <li>KiCad schematic capture, ERC/DRC verification, and footprint assignment.</li>
-                <li>PCB layout with ground pours and stitching vias, Gerber/drill export, and working with fabrication houses on DFM checks and ordering.</li>
-            </ul>
-        </div>
-    </div>
-</div>
+    <!-- ---------------------- Body ----------------------- -->
+    <div class="container">
+        <div class="project-layout">
 
-<!-- ---------------------- Footer ----------------------- -->
-<div class="copyright">
-    <p>&copy; 2026 David Holland &middot; Charlottesville, VA</p>
-</div>
+            <aside class="spec-rail" aria-label="Project details">
+                <div class="spec-group">
+                    <span class="spec-label">Role</span>
+                    <span class="spec-value">Solo</span>
+                </div>
+                <div class="spec-group">
+                    <span class="spec-label">Stack</span>
+                    <div class="spec-value">
+                        <ul>
+                            <li>Analog circuit design</li>
+                            <li>KiCad</li>
+                            <li>PCB layout</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="spec-group">
+                    <span class="spec-label">Board</span>
+                    <div class="spec-value">
+                        <ul>
+                            <li><span class="num">9V</span> single-transistor</li>
+                            <li><span class="num">2-layer</span> FR-4, HASL</li>
+                            <li><span class="num">29.5×23</span> mm</li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="prose">
+                <section class="scroll-fade" data-mask>
+                    <h2>Overview</h2>
+                    <p>
+                        The circuit is a single-transistor common-emitter booster running off a 9V supply,
+                        with a volume potentiometer on the output. It is small, and it is based on a
+                        well-known design, the Electro-Harmonix LPB-1. Most of the work went into everything
+                        downstream of the schematic: getting from a breadboard that worked to a set of files
+                        a manufacturer would actually accept.
+                    </p>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>The circuit</h2>
+                    <dl>
+                        <div>
+                            <dt>Amplifier stage</dt>
+                            <dd>A 2N3904 NPN transistor in a common-emitter configuration provides the clean gain.</dd>
+                        </div>
+                        <div>
+                            <dt>Bias network</dt>
+                            <dd>A 430k/43k voltage divider sets the transistor's operating point, with a 10k collector and 390&#8486; emitter resistor.</dd>
+                        </div>
+                        <div>
+                            <dt>Coupling capacitors</dt>
+                            <dd>100nF input and output capacitors block DC while passing the guitar signal.</dd>
+                        </div>
+                        <div>
+                            <dt>Volume control</dt>
+                            <dd>An A100k audio-taper potentiometer on the output sets the boost level.</dd>
+                        </div>
+                        <div>
+                            <dt>Off-board wiring</dt>
+                            <dd>Input and output jacks, the potentiometer, and the 9V battery connect to the board through pin headers.</dd>
+                        </div>
+                    </dl>
+
+                    <figure class="project-figure">
+                        <picture>
+                            <source srcset="images/boostpedalschematic.webp" type="image/webp">
+                            <img src="images/boostpedalschematic.png" alt="KiCad schematic of the boost pedal, from the input jack through the 2N3904 amplifier stage to the volume potentiometer and output jack"
+                                 width="1200" height="693" loading="lazy" decoding="async">
+                        </picture>
+                        <figcaption>
+                            The full circuit in KiCad. Signal comes in at the jack, through the coupling
+                            capacitor to the 2N3904 stage and its bias network, then out through the volume pot.
+                        </figcaption>
+                    </figure>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>Build process</h2>
+                    <dl>
+                        <div>
+                            <dt>Breadboard prototype</dt>
+                            <dd>Selected component values and verified the amplifier on a breadboard with real jacks, a potentiometer, and a powered supply rail before committing to a layout.</dd>
+                        </div>
+                        <div>
+                            <dt>KiCad schematic</dt>
+                            <dd>Captured the circuit, assigned through-hole footprints, added pin headers for the off-board components, and resolved every Electrical Rules Check warning.</dd>
+                        </div>
+                        <div>
+                            <dt>Printed PCB</dt>
+                            <dd>Routed a 2-layer, 29.5&times;23mm board with a stitched ground pour, passed Design Rules Check and the manufacturer's free DFM review, then exported Gerber and drill files and sent the board to fabrication in FR-4 with a HASL finish.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>Outcome</h2>
+                    <p>
+                        The board is 2-layer FR-4, 29.5&times;23mm. It passed Design Rules Check and the fab
+                        house's DFM review on the first submission. Gerber and drill files went out and the
+                        board was manufactured with a HASL finish.
+                    </p>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>What I'd do differently</h2>
+                    <p>
+                        I'd socket the transistor, because swapping it out for more or less gain currently
+                        means desoldering. I'd also put test points on the bias network. Probing a board this
+                        size with no dedicated pads meant clipping onto component legs, which is awkward and
+                        a good way to short something by accident. If I did another revision I'd add a
+                        true-bypass footswitch as well, since the jacks currently run straight to pin headers
+                        and the pedal sits in the signal path whether you're using it or not.
+                    </p>
+                </section>
+            </div>
+
+        </div>
+
+        <nav class="project-nav" aria-label="Project">
+            <a href="blackhawk.html"><svg aria-hidden="true"><use href="#i-arrow-l"></use></svg>Previous: Blackhawk AI</a>
+            <a href="index.html#work">All work <svg aria-hidden="true"><use href="#i-arrow-r"></use></svg></a>
+        </nav>
+    </div>
+
+</main>
 
 <script src="js/main.js"></script>
 </body>

@@ -4,160 +4,341 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>David Holland | Computer Engineer</title>
-    <meta name="description" content="Portfolio of David Holland, a Computer Engineering student at the University of Virginia.">
+    <meta name="description" content="Computer Engineering student at the University of Virginia. An 8-bit CPU written in VHDL, a deployed retrieval-augmented search app, and a guitar pedal taken from breadboard to a fabricated PCB.">
     <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="canonical" href="https://davidlholland.com/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="David Holland | Computer Engineer">
-    <meta property="og:description" content="Portfolio of David Holland, a Computer Engineering student at the University of Virginia.">
+    <meta property="og:description" content="Computer Engineering student at UVA working across firmware, digital design, and full-stack systems.">
     <meta property="og:url" content="https://davidlholland.com/">
     <meta property="og:image" content="https://davidlholland.com/images/favicon.png">
     <meta name="twitter:card" content="summary">
+
+    <script>document.documentElement.classList.add('js');</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://kit.fontawesome.com/4141c56890.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+        <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+        <symbol id="i-arrow-ur" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></symbol>
+        <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></symbol>
+        <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+    </defs>
+</svg>
+
+<div class="nav-scrim" data-nav-scrim></div>
+
 <!-- ---------------------- Header ----------------------- -->
-<div id="header">
+<header class="site-header">
     <div class="container">
-        <nav>
-            <img src="images/logo.png" class="logo" alt="David Holland logo">
-            <ul id="sidemenu">
-                <li><a href="#header">Home</a></li>
+        <nav class="nav" data-nav aria-label="Primary">
+            <a class="wordmark" href="/" aria-label="David Holland — home">
+                <svg viewBox="0 0 32 32" aria-hidden="true">
+                    <path class="mark-light" d="M18.06,0.25 32.00,14.16 31.96,16.69 18.46,3.18 18.20,3.03 17.77,3.11 8.74,12.42 6.21,12.46 6.32,12.24Z M0.04,15.35 13.58,28.89 13.87,29.00 14.30,28.86 23.58,19.58 26.04,19.61 13.87,31.75 0.00,17.88Z"/>
+                    <path class="mark-accent" d="M14.16,0.00 16.69,0.07 4.33,12.71 4.26,13.15 4.37,13.36 4.62,13.54 23.15,13.54 27.52,15.35 27.56,15.46 1.73,15.46 0.25,13.98 1.26,12.86Z M18.02,4.44 18.17,4.48 27.92,14.27 23.66,12.53 16.83,5.71 16.87,5.56Z M4.44,16.58 30.23,16.58 31.71,18.02 31.71,18.13 17.84,32.00 15.39,32.00 15.35,31.93 27.92,19.32 27.95,18.74 27.59,18.46 8.70,18.46Z M4.05,17.70 8.34,19.50 15.17,26.40 13.91,27.63Z"/>
+                </svg>
+                <span>David Holland</span>
+            </a>
+
+            <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="nav-list">
+                <svg aria-hidden="true"><use href="#i-menu"></use></svg>
+                <span class="sr-only">Open menu</span>
+            </button>
+
+            <ul class="nav-list" id="nav-list" data-nav-list>
                 <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#work">Work</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <i class="fas fa-times" onclick="closemenu()"></i>
+                <li><a class="btn btn--ghost btn--sm nav-cta" href="resume.pdf" download>
+                    <svg aria-hidden="true"><use href="#i-download"></use></svg>Résumé
+                </a></li>
+                <li>
+                    <button class="nav-close" type="button" data-nav-close>
+                        <svg aria-hidden="true"><use href="#i-close"></use></svg>
+                        <span class="sr-only">Close menu</span>
+                    </button>
+                </li>
             </ul>
-            <i class="fas fa-bars" onclick="openmenu()"></i>
         </nav>
-        <div class="header-text reveal">
-            <p>Computer Engineer</p>
-            <h1>Hi, I'm <span>David Holland</span><br> from Richmond, VA</h1>
-        </div>
     </div>
-</div>
+</header>
 
-<!-- ---------------------- About ----------------------- -->
-<div id="about">
-    <div class="container">
-        <div class="row">
-            <div class="about-col-1 reveal reveal-left">
-                <img src="images/user.jpg" alt="Photo of David Holland">
-            </div>
-            <div class="about-col-2 reveal reveal-right">
-                <h1 class="sub-title abt">About Me</h1>
-                <p id="abt-me-p">
-                    Hi, I’m David Holland. I am a Computer Engineering student at the University of Virginia with a passion for digital systems,
-                    programming, and building technology that solves real-world problems. I enjoy bridging hardware and software,
-                    from designing an 8-bit CPU in VHDL to building Blackhawk AI, a full-stack retrieval-augmented generation web app.
-                    As a Technology Assistant at the UVA Career Center, I manage deployment, security, and support across a fleet of 50+
-                    Windows and macOS endpoints. Beyond academics, I lead and mentor through Younglife, where I’ve developed strong
-                    communication and leadership skills. I’m always looking for opportunities to learn, collaborate, and create impactful
-                    projects that blend innovation with practical application.
+<main id="main">
+
+    <!-- ---------------------- Hero ----------------------- -->
+    <section class="hero" aria-labelledby="hero-title">
+        <div class="container">
+            <div class="hero-inner scroll-fade">
+                <h1 id="hero-title">David <span class="accent">Holland</span></h1>
+                <p class="hero-subtitle">Computer Engineer · University of Virginia</p>
+                <p class="hero-lead">
+                    I work on both sides of the hardware and software line. Right now that means three
+                    things: a processor I designed in VHDL down to the ALU, a document search app that is
+                    deployed and being used, and a guitar pedal that started on a breadboard and ended up
+                    as a fabricated board.
                 </p>
-
-                <div class="tab-titles">
-                    <p class="tab-links active-link" onclick="opentab(event, 'education')">Education</p>
-                    <p class="tab-links" onclick="opentab(event, 'skills')">Skills</p>
-                    <p class="tab-links" onclick="opentab(event, 'experience')">Experience</p>
-                </div>
-                <div class="tab-contents active-tab" id="education">
-                    <ul>
-                        <li><span>University of Virginia</span><br>B.S. Computer Engineering, Expected May 2028</li>
-                        <li><span>Focus</span><br>Computer Firmware Engineering</li>
-                        <li><span>Relevant Coursework</span><br>Digital Logic Design, Data Structures and Algorithms, Computer Systems and Organization I/II, Introduction to Embedded Systems, Signals and Systems, Electronics</li>
-                    </ul>
-                </div>
-                <div class="tab-contents" id="experience">
-                    <ul>
-                        <li><span>Technology Assistant</span><br>Jan 2026–Present: UVA Career Center — Data and Technology: deployed 50+ laptops and workstations, owned vulnerability management with Qualys, managed macOS/iOS devices through Jamf Pro, and served as first-line support for a 35-person office</li>
-                        <li><span>Blackhawk AI</span><br>May–July 2026: built a full-stack retrieval-augmented generation web app with Flask, Supabase, and PostgreSQL/pgvector</li>
-                        <li><span>8-Bit CPU</span><br>Jan–May 2025: designed and verified a complete processor in VHDL using Intel Quartus II and RTL simulation</li>
-                    </ul>
-                </div>
-                <div class="tab-contents" id="skills">
-                    <ul>
-                        <li><span>Languages</span><br>Python, Java, VHDL, JavaScript, HTML, CSS, SQL</li>
-                        <li><span>Frameworks &amp; Tools</span><br>Flask, Supabase, PostgreSQL, pgvector, Git, GitHub, Intel Quartus II, Autodesk Fusion</li>
-                        <li><span>Systems &amp; Platforms</span><br>Windows, macOS, Active Directory, Group Policy, Jamf Pro, Qualys, SharePoint</li>
-                    </ul>
+                <div class="hero-actions">
+                    <a class="btn btn--primary" href="#work">View my work</a>
+                    <a class="btn btn--ghost" href="resume.pdf" download>
+                        <svg aria-hidden="true"><use href="#i-download"></use></svg>Download résumé
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
-<!-- ---------------------- Portfolio ----------------------- -->
-<div id="portfolio">
-    <div class="container">
-        <h1 class="sub-title reveal">My Work</h1>
-        <div class="work-list">
-            <div class="work reveal">
-                <img src="images/image.jpg" alt="Simple CPU project">
-                <div class="layer">
-                    <h3>Simple Central Processing Unit (CPU)</h3>
-                    <p>This project entailed designing a simple CPU from its basic components.
-                        For more information:
+    <!-- ---------------------- About ----------------------- -->
+    <section class="section" id="about" aria-labelledby="about-title" data-mask>
+        <div class="container">
+            <h2 class="section-title scroll-fade" id="about-title">About</h2>
+
+            <div class="about-rail">
+                <!-- Pins while the three blocks scroll past it -->
+                <div class="about-pinned">
+                    <img class="about-photo" src="images/user.jpg" alt="David Holland"
+                         width="720" height="1079" loading="lazy" decoding="async">
+
+                    <p class="about-bio">
+                        I'm a Computer Engineering student at the University of Virginia. Firmware and digital
+                        design are what I keep coming back to, mostly because I like how far down the stack you
+                        can go before you hit physics. So far that has meant an 8-bit processor built and
+                        verified in VHDL, a retrieval-augmented search app called Blackhawk AI running on Flask,
+                        Supabase, and pgvector, and an analog boost pedal that went from a breadboard to a
+                        fabricated two-layer board.
                     </p>
-                    <a href="cpu.html" aria-label="View CPU project details"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <p class="about-bio">
+                        Outside of engineering I lead and mentor with Younglife.
+                    </p>
+
+                    <nav class="about-index" aria-label="About sections" data-about-index>
+                        <a href="#experience">Experience</a>
+                        <a href="#education">Education</a>
+                        <a href="#skills">Skills</a>
+                    </nav>
                 </div>
-            </div>
-            <div class="work reveal" style="--reveal-delay: 0.35s">
-                <img src="images/blackhawk.png" alt="Blackhawk AI project">
-                <div class="layer">
-                    <h3>Blackhawk AI</h3>
-                    <p>A full-stack Retrieval-Augmented Generation system with semantic search,
-                        built with Flask, Supabase, and pgvector. For more information:
-                    </p>
-                    <a href="blackhawk.html" aria-label="View Blackhawk AI project details"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                </div>
-            </div>
-            <div class="work reveal" style="--reveal-delay: 0.5s">
-                <img src="images/boostpedal-preview.png" alt="Guitar boost pedal project">
-                <div class="layer">
-                    <h3>Guitar Boost Pedal</h3>
-                    <p>An analog boost pedal taken from breadboard prototype to KiCad schematic
-                        to a fabricated PCB. For more information:
-                    </p>
-                    <a href="boostpedal.html" aria-label="View boost pedal project details"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+
+                <div class="about-story">
+
+                    <article class="story-block scroll-fade" id="experience" aria-labelledby="experience-h">
+                        <p class="story-label">Experience</p>
+
+                        <div class="story-head">
+                            <h3 id="experience-h">Technology Assistant</h3>
+                            <span class="story-date">Jan 2026 &ndash; Present</span>
+                        </div>
+                        <p class="story-org">University of Virginia Career Center &mdash; Data and Technology</p>
+                        <ul class="bullets">
+                            <li>Imaged and deployed 50+ Windows laptops and workstations plus macOS and iOS devices,
+                                standardizing configuration through Group Policy and Jamf Pro enrollment profiles to
+                                bring machines to a working state on first boot.</li>
+                            <li>Owned vulnerability management across 50+ endpoints via Qualys Patch Management,
+                                driving remediation that cut the office's open-vulnerability count by 30%.</li>
+                            <li>Served as first-line technical support for a 35-person office and redesigned the
+                                SharePoint intranet, restructuring navigation so staff could self-serve procedures
+                                and forms, keeping student-facing advising services running during peak season.</li>
+                        </ul>
+
+                        <div class="story-head story-head--sub">
+                            <h3>Independent Project</h3>
+                            <span class="story-date">Jun &ndash; Aug 2026</span>
+                        </div>
+                        <p class="story-org">Freelance &mdash; Blackhawk Coaching, Richmond, VA</p>
+                        <ul class="bullets">
+                            <li>Delivered a custom knowledge-base application for Blackhawk Coaching as sole
+                                developer, scoping requirements with the client and translating their teaching
+                                material into a searchable self-service tool.</li>
+                        </ul>
+                    </article>
+
+                    <article class="story-block scroll-fade" id="education" aria-labelledby="education-h">
+                        <p class="story-label">Education</p>
+                        <div class="story-head">
+                            <h3 id="education-h">B.S. Computer Engineering</h3>
+                            <span class="story-date">Expected May 2028</span>
+                        </div>
+                        <p class="story-org">University of Virginia &mdash; Charlottesville, VA</p>
+
+                        <p class="story-sublabel">Relevant coursework</p>
+                        <ul class="chips">
+                            <li>Digital Logic Design</li>
+                            <li>Signals and Systems</li>
+                            <li>Applied Circuits</li>
+                            <li>Data Structures and Algorithms</li>
+                            <li>Computer Systems and Organization I/II</li>
+                            <li>Introduction to Embedded Systems</li>
+                            <li>Electronics</li>
+                        </ul>
+                    </article>
+
+                    <article class="story-block scroll-fade" id="skills" aria-labelledby="skills-h">
+                        <p class="story-label">Skills</p>
+                        <h3 class="sr-only" id="skills-h">Technical skills</h3>
+                        <dl class="skill-rows">
+                            <div class="skill-row">
+                                <dt>Languages</dt>
+                                <dd>Python · Java · VHDL · JavaScript · HTML · CSS · SQL</dd>
+                            </div>
+                            <div class="skill-row">
+                                <dt>Frameworks &amp; Tools</dt>
+                                <dd>Claude · Claude Code · Flask · Supabase · pgvector · Git · Intel Quartus II · Autodesk Fusion</dd>
+                            </div>
+                            <div class="skill-row">
+                                <dt>Systems &amp; Platforms</dt>
+                                <dd>Windows · macOS · Active Directory · Group Policy · Jamf Pro · Qualys · SharePoint</dd>
+                            </div>
+                        </dl>
+                    </article>
+
                 </div>
             </div>
         </div>
-        <!-- <a href="#" class="btn">See More Projects</a> -->
-    </div>
-</div>
+    </section>
 
-<!-- ---------------------- Contact ----------------------- -->
-<div id="contact">
-    <div class="container">
-        <div class="row">
-            <div class="contact-left ">
-                <h1 class="sub-title">Contact Me</h1>
-                <p><i class="fa-regular fa-paper-plane"></i>davidlataneholland@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i>(540)-729-1701</p>
-                <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/david-holland-654905351" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://github.com/davidlholland05" aria-label="GitHub profile"><i class="fa-brands fa-github"></i></a>
-                </div>
-                <a href="resume.pdf" download class="btn btn2">Download Resume</a>
+    <!-- ---------------------- Work ----------------------- -->
+    <section class="section" id="work" aria-labelledby="work-title" data-mask>
+        <div class="container">
+            <h2 class="section-title scroll-fade" id="work-title">Selected work</h2>
+
+            <div class="work-grid">
+                <article class="card scroll-fade">
+                    <div class="card-media">
+                        <picture>
+                            <source srcset="images/cpu-preview.webp" type="image/webp">
+                            <img src="images/cpu-preview.jpg" alt="RTL waveform simulation of the CPU in Intel Quartus II"
+                                 width="840" height="564" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title"><a href="cpu.html">8-Bit CPU</a></h3>
+                        <p class="card-desc">
+                            I built it from the parts up: ALU, registers, control unit, memory. Every module
+                            was verified in simulation before anything got wired together.
+                        </p>
+                        <ul class="chips">
+                            <li>VHDL</li>
+                            <li>Quartus II</li>
+                            <li>RTL Sim</li>
+                        </ul>
+                        <span class="card-more">View project <svg aria-hidden="true"><use href="#i-arrow-ur"></use></svg></span>
+                    </div>
+                </article>
+
+                <article class="card scroll-fade" style="--scroll-fade-delay: 0.1s">
+                    <div class="card-media">
+                        <picture>
+                            <source srcset="images/blackhawk.webp" type="image/webp">
+                            <img src="images/blackhawk.png" alt="The Blackhawk AI application title screen"
+                                 width="800" height="781" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title"><a href="blackhawk.html">Blackhawk AI</a></h3>
+                        <p class="card-desc">
+                            A knowledge-base app built for a client. Semantic search over a 700-chunk
+                            corpus, answering in under four seconds. Deployed, with an admin panel.
+                        </p>
+                        <ul class="chips">
+                            <li>Flask</li>
+                            <li>Supabase</li>
+                            <li>pgvector</li>
+                        </ul>
+                        <span class="card-more">View project <svg aria-hidden="true"><use href="#i-arrow-ur"></use></svg></span>
+                    </div>
+                </article>
+
+                <article class="card scroll-fade" style="--scroll-fade-delay: 0.2s">
+                    <div class="card-media">
+                        <picture>
+                            <source srcset="images/boostpedal-preview.webp" type="image/webp">
+                            <img src="images/boostpedal-preview.png" alt="Detail of the boost pedal's KiCad schematic showing the 2N3904 transistor and its bias network"
+                                 width="800" height="1004" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title"><a href="boostpedal.html">Guitar Boost Pedal</a></h3>
+                        <p class="card-desc">
+                            One transistor, a 9V battery, and a volume pot. It started on a breadboard and
+                            ended up as a fabricated two-layer board.
+                        </p>
+                        <ul class="chips">
+                            <li>Analog</li>
+                            <li>KiCad</li>
+                            <li>PCB Layout</li>
+                        </ul>
+                        <span class="card-more">View project <svg aria-hidden="true"><use href="#i-arrow-ur"></use></svg></span>
+                    </div>
+                </article>
             </div>
-            <div class="contact-right">
-                <form name="submit-to-google-sheet">
-                    <input type="text" name="Name" placeholder="Your Name" required>
-                    <input type="email" name="Email" placeholder="Your Email" required>
-                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                    <button type="submit" class="btn btn2">Submit</button>
+        </div>
+    </section>
+
+    <!-- ---------------------- Contact ----------------------- -->
+    <section class="section" id="contact" aria-labelledby="contact-title" data-mask>
+        <div class="container">
+            <h2 class="section-title scroll-fade" id="contact-title">Get in touch</h2>
+
+            <div class="contact-grid">
+                <div class="contact-info scroll-fade">
+                    <p class="contact-lead">
+                        I'm looking for internships in firmware and embedded systems. Happy to talk about
+                        any of the projects above too.
+                    </p>
+
+                    <div class="contact-links">
+                        <a href="mailto:davidlataneholland@gmail.com">
+                            <svg aria-hidden="true"><use href="#i-mail"></use></svg>davidlataneholland@gmail.com
+                        </a>
+                        <a href="https://www.linkedin.com/in/david-l-holland">
+                            <svg aria-hidden="true"><use href="#i-linkedin"></use></svg>LinkedIn
+                        </a>
+                        <a href="https://github.com/davidlholland05">
+                            <svg aria-hidden="true"><use href="#i-github"></use></svg>GitHub
+                        </a>
+                    </div>
+
+                    <div class="contact-actions">
+                        <a class="btn btn--ghost" href="resume.pdf" download>
+                            <svg aria-hidden="true"><use href="#i-download"></use></svg>Download résumé
+                        </a>
+                    </div>
+                </div>
+
+                <form class="scroll-fade" name="submit-to-google-sheet" data-contact-form novalidate>
+                    <div class="field">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="Name" autocomplete="name" required>
+                        <p class="field-error" data-error-for="Name" aria-live="polite"></p>
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="Email" autocomplete="email" required>
+                        <p class="field-error" data-error-for="Email" aria-live="polite"></p>
+                    </div>
+                    <div class="field">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="Message" rows="6" required></textarea>
+                        <p class="field-error" data-error-for="Message" aria-live="polite"></p>
+                    </div>
+                    <button class="btn btn--primary" type="submit">Send message</button>
+                    <span class="form-status" data-form-status role="status" aria-live="polite"></span>
                 </form>
-                <span id="msg"></span>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
-<!-- ---------------------- Footer ----------------------- -->
-<div class="copyright">
-    <p>&copy; 2026 David Holland &middot; Charlottesville, VA</p>
-</div>
+</main>
 
 <script src="js/main.js"></script>
 </body>

@@ -3,107 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Central Processing Unit (CPU)</title>
-    <meta name="description" content="An 8-bit CPU designed and verified in VHDL by David Holland, with a full ALU, registers, control unit, and memory, simulated in Intel Quartus II.">
+    <title>8-Bit CPU — David Holland</title>
+    <meta name="description" content="An 8-bit CPU designed and verified in VHDL by David Holland. ALU, register file, control unit, and memory, integrated into a working datapath and simulated in Intel Quartus II.">
     <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="canonical" href="https://davidlholland.com/cpu.html">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Simple Central Processing Unit (CPU) — David Holland">
+    <meta property="og:title" content="8-Bit CPU — David Holland">
     <meta property="og:description" content="An 8-bit CPU designed and verified in VHDL, with a full ALU, registers, control unit, and memory.">
     <meta property="og:url" content="https://davidlholland.com/cpu.html">
     <meta property="og:image" content="https://davidlholland.com/images/cpu-preview.jpg">
     <meta name="twitter:card" content="summary">
+
+    <script>document.documentElement.classList.add('js');</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://kit.fontawesome.com/4141c56890.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+        <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+        <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></symbol>
+        <symbol id="i-arrow-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7-7-7 7 7 7"/></symbol>
+        <symbol id="i-arrow-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></symbol>
+    </defs>
+</svg>
+
+<div class="nav-scrim" data-nav-scrim></div>
+
 <!-- ---------------------- Header ----------------------- -->
-<div id="header_cpu">
+<header class="site-header">
     <div class="container">
-        <nav>
-            <img src="images/logo.png" class="logo" alt="David Holland logo">
-            <ul id="sidemenu">
-                <li><a href="index.html#header">Home</a></li>
+        <nav class="nav" data-nav aria-label="Primary">
+            <a class="wordmark" href="index.html" aria-label="David Holland — home">
+                <svg viewBox="0 0 32 32" aria-hidden="true">
+                    <path class="mark-light" d="M18.06,0.25 32.00,14.16 31.96,16.69 18.46,3.18 18.20,3.03 17.77,3.11 8.74,12.42 6.21,12.46 6.32,12.24Z M0.04,15.35 13.58,28.89 13.87,29.00 14.30,28.86 23.58,19.58 26.04,19.61 13.87,31.75 0.00,17.88Z"/>
+                    <path class="mark-accent" d="M14.16,0.00 16.69,0.07 4.33,12.71 4.26,13.15 4.37,13.36 4.62,13.54 23.15,13.54 27.52,15.35 27.56,15.46 1.73,15.46 0.25,13.98 1.26,12.86Z M18.02,4.44 18.17,4.48 27.92,14.27 23.66,12.53 16.83,5.71 16.87,5.56Z M4.44,16.58 30.23,16.58 31.71,18.02 31.71,18.13 17.84,32.00 15.39,32.00 15.35,31.93 27.92,19.32 27.95,18.74 27.59,18.46 8.70,18.46Z M4.05,17.70 8.34,19.50 15.17,26.40 13.91,27.63Z"/>
+                </svg>
+                <span>David Holland</span>
+            </a>
+
+            <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="nav-list">
+                <svg aria-hidden="true"><use href="#i-menu"></use></svg>
+                <span class="sr-only">Open menu</span>
+            </button>
+
+            <ul class="nav-list" id="nav-list" data-nav-list>
                 <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#work" aria-current="page">Work</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
-                <i class="fas fa-times" onclick="closemenu()"></i>
+                <li><a class="btn btn--ghost btn--sm nav-cta" href="resume.pdf" download>
+                    <svg aria-hidden="true"><use href="#i-download"></use></svg>Résumé
+                </a></li>
+                <li>
+                    <button class="nav-close" type="button" data-nav-close>
+                        <svg aria-hidden="true"><use href="#i-close"></use></svg>
+                        <span class="sr-only">Close menu</span>
+                    </button>
+                </li>
             </ul>
-            <i class="fas fa-bars" onclick="openmenu()"></i>
         </nav>
-        <div class="project-hero-row">
-            <div class="header-text-cpu reveal reveal-left">
-                <h2>Simple Central Processing Unit (CPU)</h2>
-                <p>An 8-bit CPU designed to perform arithmetic, execute logic, and move and store data.</p>
-                <div class="tech-tags">
-                    <span>-VHDL</span>
-                    <span>-Intel Quartus II</span>
-                    <span>-RTL Simulation</span>
+    </div>
+</header>
+
+<main id="main">
+
+    <!-- ---------------------- Hero ----------------------- -->
+    <section class="project-hero" aria-labelledby="project-title">
+        <div class="container">
+            <a class="backlink" href="index.html#work">
+                <svg aria-hidden="true"><use href="#i-arrow-l"></use></svg>All work
+            </a>
+
+            <div class="project-hero-grid">
+                <div class="scroll-fade">
+                    <h1 id="project-title">8-Bit CPU</h1>
+                    <p class="project-summary">
+                        A processor built from the parts up: ALU, registers, control unit, and memory,
+                        each one verified on its own before it went into the datapath.
+                    </p>
+                    <ul class="chips">
+                        <li>VHDL</li>
+                        <li>Intel Quartus II</li>
+                        <li>RTL Simulation</li>
+                    </ul>
                 </div>
-                <div class="stat-row">
-                    <div class="stat">
-                        <span class="stat-value">8-bit</span>
-                        <span class="stat-label">data bus</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">5-bit</span>
-                        <span class="stat-label">address bus</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">32</span>
-                        <span class="stat-label">memory locations</span>
-                    </div>
-                </div>
+
+                <div class="project-preview scroll-fade"
+                     style="--preview: url('images/cpu-preview.jpg')"
+                     role="img" aria-label="RTL waveform simulation of the CPU in Intel Quartus II"></div>
             </div>
-            <div class="project-preview reveal reveal-right" style="--reveal-delay: 0.25s" role="img" aria-label="RTL waveform simulation of the CPU in Intel Quartus II"></div>
         </div>
-    </div>
-</div>
+    </section>
 
-<!-- ---------------------- Project details ----------------------- -->
-<div id="about_cpu">
-    <div class="container_cpu">
-        <div class="project-details reveal">
-            <h2>CPU Design Details</h2>
-            <p>The architecture was built from both combinational and sequential components, which I designed, coded, and verified in VHDL.</p>
-            <p><strong>Key modules included:</strong></p>
-            <ul>
-                <li><strong>ALU (Arithmetic Logic Unit):</strong> Implemented add, subtract, bitwise AND/OR/XOR, and shift operations.</li>
-                <li><strong>Registers:</strong> Small storage locations for temporary data.</li>
-                <li><strong>Control Unit:</strong> Directs the operation of the CPU and coordinates activities.</li>
-                <li><strong>Memory:</strong> Stores data and instructions for processing.</li>
-                <li><strong>Supporting Components:</strong> Multiplexers, demultiplexers, decoders, encoders, comparators, counters, and timers integrated into the datapath.</li>
-            </ul>
-        </div>
-        <div class="diagram reveal">
-            <p>The diagram below illustrates the CPU's architecture, showing the interconnections between the decoders, sequencers, and datapath. (Squared in blue is the control unit)</p>
-            <img src="images/cpu_diagram.jpg" alt="CPU Architecture Diagram">
-        </div>
-        <div class="development-process reveal">
-            <h2>Development Process</h2>
-            <p>The CPU was developed using a structured approach:</p>
-            <ul>
-                <li><strong>Design:</strong> Each component was first modeled in Quartus using VHDL or circuit building.</li>
-                <li><strong>Verification:</strong> Conducted extensive testing using testbenches and simulation tools to ensure functionality and performance.</li>
-                <li><strong>Integration:</strong> Verified modules were connected to form the full datapath and control logic. The system was tested by executing simple programs that combined arithmetic, logic, and memory operations.</li>
-            </ul>
-        </div>
-        <div class="experience reveal">
-            <h2>Experience Gained</h2>
-            <p>This project provided hands-on experience in digital design, VHDL programming, and system integration. It enhanced my understanding of CPU architecture and the complexities involved in building a functional processor.</p>
-            <p>Key skills developed include:</p>
-            <ul>
-                <li>Digital system design principles and hardware description languages (VHDL).</li>
-                <li>RTL simulation, verification, and debugging workflows.</li>
-                <li>FPGA development tools (Intel Quartus II).</li>
-            </ul>
-        </div>
-    </div>
-</div>
+    <!-- ---------------------- Body ----------------------- -->
+    <div class="container">
+        <div class="project-layout">
 
-<!-- ---------------------- Footer ----------------------- -->
-<div class="copyright">
-    <p>&copy; 2026 David Holland &middot; Charlottesville, VA</p>
-</div>
+            <aside class="spec-rail" aria-label="Project details">
+                <div class="spec-group">
+                    <span class="spec-label">Role</span>
+                    <span class="spec-value">Solo</span>
+                </div>
+                <div class="spec-group">
+                    <span class="spec-label">Timeline</span>
+                    <span class="spec-value">Jan–May 2025</span>
+                </div>
+                <div class="spec-group">
+                    <span class="spec-label">Stack</span>
+                    <div class="spec-value">
+                        <ul>
+                            <li>VHDL</li>
+                            <li>Intel Quartus II</li>
+                            <li>RTL simulation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="spec-group">
+                    <span class="spec-label">Architecture</span>
+                    <div class="spec-value">
+                        <ul>
+                            <li><span class="num">8-bit</span> data bus</li>
+                            <li><span class="num">5-bit</span> address bus</li>
+                            <li><span class="num">32</span> memory locations</li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="prose">
+                <section class="scroll-fade" data-mask>
+                    <h2>Overview</h2>
+                    <p>
+                        The assignment was a working processor, with the constraint that none of it could
+                        come out of a library. Every combinational and sequential block had to be designed,
+                        coded, and checked on its own before it went into the datapath. Most of the work
+                        happened at the module level, and integration came last.
+                    </p>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>Architecture</h2>
+                    <dl>
+                        <div>
+                            <dt>Arithmetic Logic Unit</dt>
+                            <dd>Add, subtract, bitwise AND/OR/XOR, and shift operations.</dd>
+                        </div>
+                        <div>
+                            <dt>Registers</dt>
+                            <dd>Small storage locations holding operands and intermediate results.</dd>
+                        </div>
+                        <div>
+                            <dt>Control Unit</dt>
+                            <dd>Decodes instructions and sequences the activity of every other block.</dd>
+                        </div>
+                        <div>
+                            <dt>Memory</dt>
+                            <dd>32 locations storing both data and instructions.</dd>
+                        </div>
+                        <div>
+                            <dt>Supporting logic</dt>
+                            <dd>Multiplexers, demultiplexers, decoders, encoders, comparators, counters, and timers integrated into the datapath.</dd>
+                        </div>
+                    </dl>
+
+                    <figure class="project-figure">
+                        <picture>
+                            <source srcset="images/cpu_diagram.webp" type="image/webp">
+                            <img src="images/cpu_diagram.jpg" alt="Block diagram of the CPU architecture showing decoders, sequencers, and the datapath, with the control unit outlined in blue"
+                                 width="1200" height="486" loading="lazy" decoding="async">
+                        </picture>
+                        <figcaption>
+                            The full architecture: decoders, sequencers, the datapath, and how they
+                            connect. The control unit is outlined in blue.
+                        </figcaption>
+                    </figure>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>Build process</h2>
+                    <dl>
+                        <div>
+                            <dt>Design</dt>
+                            <dd>Each component was modelled in Quartus, either in VHDL or by building the circuit directly.</dd>
+                        </div>
+                        <div>
+                            <dt>Verification</dt>
+                            <dd>Every module was exercised with testbenches and RTL simulation before it was trusted.</dd>
+                        </div>
+                        <div>
+                            <dt>Integration</dt>
+                            <dd>Verified modules were connected into the full datapath and control logic, then tested by running short programs that mixed arithmetic, logic, and memory operations.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>Outcome</h2>
+                    <p>
+                        The processor runs short programs that mix arithmetic, logic, and memory access.
+                        Verifying each block on its own first mattered more than I expected. Almost every
+                        bug that turned up during integration was a wiring problem rather than a logic
+                        problem, and those are much faster to track down.
+                    </p>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>What I'd do differently</h2>
+                    <p>
+                        Self-checking testbenches, from the beginning. I read a lot of waveforms by eye on
+                        this project, which is slow and easy to get wrong, and I didn't notice how much time
+                        it was costing me until fairly late. I'd also lock the instruction encoding before
+                        starting the control unit. I changed it twice after the decoder was already built,
+                        and both times meant going back through it.
+                    </p>
+                </section>
+            </div>
+
+        </div>
+
+        <nav class="project-nav" aria-label="Project">
+            <a href="index.html#work"><svg aria-hidden="true"><use href="#i-arrow-l"></use></svg>All work</a>
+            <a href="blackhawk.html">Next: Blackhawk AI <svg aria-hidden="true"><use href="#i-arrow-r"></use></svg></a>
+        </nav>
+    </div>
+
+</main>
 
 <script src="js/main.js"></script>
 </body>

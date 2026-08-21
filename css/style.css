@@ -863,7 +863,11 @@ html.has-scrolled [data-mask]{
 }
 
 /* Prose column */
-.prose{ max-width: var(--measure); }
+/* min-width:0 stops a wide child (the results table's min-width) from forcing
+   the grid track open. .project-layout guards its columns with minmax(0, …),
+   but the mobile override drops to a bare 1fr, where the automatic minimum
+   size applies again. */
+.prose{ max-width: var(--measure); min-width: 0; }
 .prose > * + *{ margin-top: var(--space-5); }
 .prose h2{
     font-size: var(--step-2);
@@ -882,6 +886,10 @@ html.has-scrolled [data-mask]{
 }
 .prose h2 + *{ margin-top: var(--space-4); }
 .prose p{ color: var(--text-muted); }
+/* Sections wrap their own content, so `.prose > * + *` cannot reach two
+   paragraphs inside one <section>. Kept narrow so it never competes with
+   `.prose h2 + *`. */
+.prose p + p{ margin-top: var(--space-5); }
 .prose strong{ color: var(--text); font-weight: 600; }
 
 .prose dl{ display: grid; gap: var(--space-4); }
@@ -929,6 +937,57 @@ html.has-scrolled [data-mask]{
     font-size: var(--step--1);
     line-height: 1.55;
     color: var(--text-subtle);
+}
+
+/* Data tables in the prose column. Rules are dividers, so --border /
+   --border-strong are the right tokens here; --border-interactive is for
+   interactive and graphical objects and is deliberately not used. The wrapper
+   is what scrolls on narrow screens — never put overflow on .prose's
+   ancestors, which would break the sticky spec rail. */
+.table-wrap{
+    overflow-x: auto;
+    margin-block: var(--space-8);
+}
+.prose table{
+    width: 100%;
+    min-width: 30rem;
+    border-collapse: collapse;
+    font-size: var(--step--1);
+}
+.prose th,
+.prose td{
+    padding: var(--space-3) var(--space-4);
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+}
+.prose th:first-child,
+.prose td:first-child{
+    text-align: left;
+    padding-left: 0;
+}
+.prose thead th{
+    font-family: var(--font-mono);
+    font-weight: 500;
+    color: var(--text);
+    border-bottom-color: var(--border-strong);
+}
+.prose tbody th{
+    font-weight: 600;
+    color: var(--text);
+}
+.prose td{
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+}
+.prose tbody tr:last-child th,
+.prose tbody tr:last-child td{ border-bottom: 0; }
+.prose caption{
+    caption-side: bottom;
+    margin-top: var(--space-3);
+    font-size: var(--step--1);
+    line-height: 1.55;
+    color: var(--text-subtle);
+    text-align: left;
 }
 
 /* Inline SVG diagram (Blackhawk architecture) */

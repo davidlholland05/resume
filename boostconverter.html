@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>555 Boost Converter — David Holland</title>
+    <meta name="description" content="A 5V to 12V boost converter: 555-timer PWM, hand-derived component values, a KiCad transient simulation, and a fabricated PCB measured against the design.">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="canonical" href="https://davidlholland.com/boostconverter.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="555 Boost Converter — David Holland">
+    <meta property="og:description" content="A 5V to 12V boost converter: 555-timer PWM, hand-derived component values, a KiCad transient simulation, and a fabricated PCB measured against the design.">
+    <meta property="og:url" content="https://davidlholland.com/boostconverter.html">
+    <meta property="og:image" content="https://davidlholland.com/images/boostconverter-preview.jpg">
+    <meta name="twitter:card" content="summary">
+
+    <script>document.documentElement.classList.add('js');</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+        <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+        <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></symbol>
+        <symbol id="i-arrow-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7-7-7 7 7 7"/></symbol>
+        <symbol id="i-arrow-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></symbol>
+    </defs>
+</svg>
+
+<div class="nav-scrim" data-nav-scrim></div>
+
+<!-- ---------------------- Header ----------------------- -->
+<header class="site-header">
+    <div class="container">
+        <nav class="nav" data-nav aria-label="Primary">
+            <a class="wordmark" href="index.html" aria-label="David Holland — home">
+                <svg viewBox="0 0 32 32" aria-hidden="true">
+                    <path class="mark-light" d="M18.06,0.25 32.00,14.16 31.96,16.69 18.46,3.18 18.20,3.03 17.77,3.11 8.74,12.42 6.21,12.46 6.32,12.24Z M0.04,15.35 13.58,28.89 13.87,29.00 14.30,28.86 23.58,19.58 26.04,19.61 13.87,31.75 0.00,17.88Z"/>
+                    <path class="mark-accent" d="M14.16,0.00 16.69,0.07 4.33,12.71 4.26,13.15 4.37,13.36 4.62,13.54 23.15,13.54 27.52,15.35 27.56,15.46 1.73,15.46 0.25,13.98 1.26,12.86Z M18.02,4.44 18.17,4.48 27.92,14.27 23.66,12.53 16.83,5.71 16.87,5.56Z M4.44,16.58 30.23,16.58 31.71,18.02 31.71,18.13 17.84,32.00 15.39,32.00 15.35,31.93 27.92,19.32 27.95,18.74 27.59,18.46 8.70,18.46Z M4.05,17.70 8.34,19.50 15.17,26.40 13.91,27.63Z"/>
+                </svg>
+                <span>David Holland</span>
+            </a>
+
+            <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="nav-list">
+                <svg aria-hidden="true"><use href="#i-menu"></use></svg>
+                <span class="sr-only">Open menu</span>
+            </button>
+
+            <ul class="nav-list" id="nav-list" data-nav-list>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#work" aria-current="page">Work</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a class="btn btn--ghost btn--sm nav-cta" href="resume.pdf" download>
+                    <svg aria-hidden="true"><use href="#i-download"></use></svg>Résumé
+                </a></li>
+                <li>
+                    <button class="nav-close" type="button" data-nav-close>
+                        <svg aria-hidden="true"><use href="#i-close"></use></svg>
+                        <span class="sr-only">Close menu</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+
+    <!-- ---------------------- Hero ----------------------- -->
+    <section class="project-hero" aria-labelledby="project-title">
+        <div class="container">
+            <a class="backlink" href="index.html#work">
+                <svg aria-hidden="true"><use href="#i-arrow-l"></use></svg>All work
+            </a>
+
+            <div class="project-hero-grid">
+                <div class="scroll-fade">
+                    <h1 id="project-title">555 Boost Converter</h1>
+                    <p class="project-summary">
+                        A 555 timer, a MOSFET, and a 33mH inductor turning 5V into 12V. Every component
+                        value was derived on paper first, then checked in simulation, then measured on a
+                        board we had fabricated.
+                    </p>
+                    <ul class="chips">
+                        <li>555 Timer</li>
+                        <li>KiCad</li>
+                        <li>SPICE</li>
+                        <li>PCB Layout</li>
+                    </ul>
+                </div>
+
+                <div class="project-preview scroll-fade">
+                    <picture>
+                        <source srcset="images/boostconverter-preview.webp" type="image/webp">
+                        <img src="images/boostconverter-preview.jpg" alt="The fabricated boost converter PCB: a 555 timer, blue trimmer potentiometer, 33mH inductor, and electrolytic output capacitor on a green two-layer board"
+                             width="840" height="564" decoding="async">
+                    </picture>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ---------------------- Body ----------------------- -->
+    <div class="container">
+        <div class="project-layout">
+
+            <aside class="spec-rail" aria-label="Project details">
+                <div class="spec-group">
+                    <span class="spec-label">Role</span>
+                    <span class="spec-value">Team of 3</span>
+                </div>
+                <div class="spec-group">
+                    <span class="spec-label">Timeline</span>
+                    <span class="spec-value">Mar–May 2026</span>
+                </div>
+                <div class="spec-group">
+                    <span class="spec-label">Stack</span>
+                    <div class="spec-value">
+                        <ul>
+                            <li>555 timer</li>
+                            <li>KiCad</li>
+                            <li>SPICE simulation</li>
+                            <li>Analog Discovery 2</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="spec-group">
+                    <span class="spec-label">Measured</span>
+                    <div class="spec-value">
+                        <ul>
+                            <li><span class="num">11.6V</span> out from <span class="num">5V</span></li>
+                            <li><span class="num">477Hz</span> PWM</li>
+                            <li><span class="num">82%</span> duty cycle</li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="prose">
+                <section class="scroll-fade" data-mask>
+                    <h2>Overview</h2>
+                    <p>
+                        The converter runs off a 5V supply and holds an LED load at 12V. A 555 timer in
+                        astable mode generates a 500Hz PWM signal; that signal switches a MOSFET, which pulls
+                        current through a 33mH inductor during the on-time and then lets the inductor dump
+                        through a diode into the output capacitor during the off-time. The interesting
+                        constraint is that the inductor has to store at least as much energy per cycle as the
+                        load spends per cycle, which is what sets the duty cycle.
+                    </p>
+                    <p>
+                        This was a team of three. I derived and ran the inductor energy analysis, took the
+                        bench measurements and tabulated the results, and helped build the circuit.
+                    </p>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>The circuit</h2>
+                    <dl>
+                        <div>
+                            <dt>PWM stage</dt>
+                            <dd>A 555 in astable mode. R<sub>A</sub>, R<sub>B</sub>, and a timing capacitor set the frequency and the duty cycle between them.</dd>
+                        </div>
+                        <div>
+                            <dt>Switch</dt>
+                            <dd>A MOSFET driven by the PWM output, tying the bottom of the inductor to ground for the on-time.</dd>
+                        </div>
+                        <div>
+                            <dt>Inductor</dt>
+                            <dd>33mH, measured at 53.2&#8486; of series resistance on a multimeter — large enough that it has to appear in the energy calculation rather than being ignored.</dd>
+                        </div>
+                        <div>
+                            <dt>Output stage</dt>
+                            <dd>A diode into a 100&micro;F capacitor, which holds the output up while the switch is closed and the inductor is charging.</dd>
+                        </div>
+                        <div>
+                            <dt>Load</dt>
+                            <dd>An LED with a 2V forward drop in series with 2.2k&#8486;, drawing 4.54mA off the 12V rail.</dd>
+                        </div>
+                    </dl>
+
+                    <figure class="project-figure">
+                        <picture>
+                            <source srcset="images/boostconverter-sim.webp" type="image/webp">
+                            <img src="images/boostconverter-sim.png" alt="KiCad transient simulation showing the output voltage climbing and plateauing at 12.8V over one second, with the PWM signal running beneath it"
+                                 width="934" height="443" loading="lazy" decoding="async">
+                        </picture>
+                        <figcaption>
+                            The KiCad transient run, 10&micro;s steps over a full second. The output climbs and
+                            plateaus at 12.8V; the PWM is the dense band underneath it.
+                        </figcaption>
+                    </figure>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>Designing the values</h2>
+                    <dl>
+                        <div>
+                            <dt>Duty cycle sets R<sub>B</sub></dt>
+                            <dd>A 90% duty cycle with R<sub>A</sub> at 10k&#8486; solves to R<sub>B</sub> = 1.25k&#8486;. The nearest part in the lab kit was 1.2k&#8486;.</dd>
+                        </div>
+                        <div>
+                            <dt>Frequency sets the timing capacitor</dt>
+                            <dd>500Hz across that resistor network needs 0.384&micro;F, so 0.47&micro;F went in.</dd>
+                        </div>
+                        <div>
+                            <dt>Allowable droop sets the output capacitor</dt>
+                            <dd>The load pulls 4.54mA for the whole 2ms period. Keeping the output inside 1% of 12V — 120mV of droop — takes 75.7&micro;F, so 100&micro;F went in.</dd>
+                        </div>
+                        <div>
+                            <dt>The energy check</dt>
+                            <dd>The MOSFET drops 0.24V, leaving 4.76V across the inductor. Solving the inductor current ODE over the 1.8ms on-time gives 84.6mA, which stores 118&micro;J. The load spends 109&micro;J per cycle, so the inductor carries each cycle with a little margin.</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>Simulation and measurement</h2>
+                    <p>
+                        The simulation and the bench disagreed in the same direction, which is the useful kind
+                        of disagreement. KiCad gave a 1.83ms high time on a 2.16ms period — 85% duty — and an
+                        output plateau of 12.8V. On the real board, an Analog Discovery 2 read 1.72ms high on a
+                        2.10ms period, so 82% duty at 477Hz, with the output settling at 11.6V.
+                    </p>
+
+                    <figure class="project-figure">
+                        <picture>
+                            <source srcset="images/boostconverter-pwm.webp" type="image/webp">
+                            <img src="images/boostconverter-pwm.png" alt="Analog Discovery 2 scope capture of the PWM signal, with cursors marking a 1.72ms high time and a 2.10ms period"
+                                 width="1200" height="760" loading="lazy" decoding="async">
+                        </picture>
+                        <figcaption>
+                            The PWM on the fabricated board. Cursors mark the high time at 1.72ms and the full
+                            period at 2.10ms, which the cursor table reports as 477Hz.
+                        </figcaption>
+                    </figure>
+
+                    <figure class="project-figure">
+                        <picture>
+                            <source srcset="images/boostconverter-output.webp" type="image/webp">
+                            <img src="images/boostconverter-output.png" alt="Analog Discovery 2 scope capture showing the converter output holding steady at 11.61V over a 200ms window"
+                                 width="1200" height="752" loading="lazy" decoding="async">
+                        </picture>
+                        <figcaption>
+                            The output once it has settled, sitting at 11.61V with the switching ripple
+                            visible on top of it.
+                        </figcaption>
+                    </figure>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>Results</h2>
+
+                    <div class="table-wrap">
+                        <table>
+                            <caption>Designed, simulated, and measured values, with error taken against the design target.</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Parameter</th>
+                                    <th scope="col">Designed</th>
+                                    <th scope="col">Simulated</th>
+                                    <th scope="col">Measured</th>
+                                    <th scope="col">Error</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">PWM period (ms)</th>
+                                    <td>2.00</td><td>2.16</td><td>2.10</td><td>5.0%</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Duty cycle (%)</th>
+                                    <td>90</td><td>85</td><td>82</td><td>8.9%</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Output voltage (V)</th>
+                                    <td>12.0</td><td>12.8</td><td>11.6</td><td>3.3%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>
+                        Everything landed inside spec — the brief asked for 500Hz at a duty cycle somewhere
+                        between 50% and 90%. The gaps are all explainable. Resistor tolerances in the 555
+                        network move the period, and the potentiometer in that network is the least ideal part
+                        on the board. The output sitting under 12V is mostly the inductor's 53.2&#8486; of
+                        series resistance, which the simulation treats far more kindly than a real winding
+                        behaves.
+                    </p>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>The board</h2>
+                    <p>
+                        The circuit was captured and laid out in KiCad, then fabricated as a two-layer board.
+                        The potentiometer sits at its halfway mark, which puts it near the 5k&#8486; used in
+                        simulation, and turning it shifts the PWM without touching anything else.
+                    </p>
+
+                    <figure class="project-figure">
+                        <picture>
+                            <source srcset="images/boostconverter-pcb.webp" type="image/webp">
+                            <img src="images/boostconverter-pcb.jpg" alt="The fabricated two-layer PCB, showing the 555 timer, trimmer potentiometer, 33mH inductor, diode, and 100 microfarad output capacitor"
+                                 width="1200" height="829" loading="lazy" decoding="async">
+                        </picture>
+                        <figcaption>
+                            The finished board. The 555 is the eight-pin package in the middle, the inductor is
+                            the black can bottom-left, and the output capacitor is bottom-right.
+                        </figcaption>
+                    </figure>
+                </section>
+
+                <section class="scroll-fade" data-mask>
+                    <h2>What I'd do differently</h2>
+                    <p>
+                        The 8.9% miss on duty cycle is the one worth fixing. The timing network runs through a
+                        potentiometer, and a wiper's resistance is not something the 555 timing equations
+                        account for — a pair of fixed resistors would have landed much closer to 90%, at the
+                        cost of losing the adjustment. I'd also spend the time to find a lower-resistance
+                        inductor. 53.2&#8486; across a 33mH part shows up twice, once in the MOSFET drop
+                        calculation and again in the output sitting at 11.6V instead of 12V, and a
+                        better-wound part costs nothing but a different order number. Beyond that, the load is
+                        a single fixed LED branch; I'd want to sweep a range of loads to see how far the
+                        output actually holds before the 100&micro;F capacitor stops keeping up.
+                    </p>
+                </section>
+            </div>
+
+        </div>
+
+        <nav class="project-nav" aria-label="Project">
+            <a href="boostpedal.html"><svg aria-hidden="true"><use href="#i-arrow-l"></use></svg>Previous: Guitar Boost Pedal</a>
+            <a href="index.html#work">All work <svg aria-hidden="true"><use href="#i-arrow-r"></use></svg></a>
+        </nav>
+    </div>
+
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>

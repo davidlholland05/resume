@@ -932,6 +932,14 @@ html.has-scrolled [data-mask]{
     background: var(--surface-raised);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
 }
+/* Portrait photos. At the full measure a 3:4 shot renders ~880px tall and
+   swamps the prose column next to the landscape figures, so cap the whole
+   figure, caption included. Left-aligned rather than centred so the caption
+   keeps the prose left margin. min() keeps it from overflowing once the
+   viewport is narrower than the cap. */
+.project-figure--portrait{
+    max-width: min(100%, 28rem);
+}
 .project-figure figcaption{
     margin-top: var(--space-3);
     font-size: var(--step--1);

@@ -672,6 +672,20 @@ html.has-scrolled [data-mask]{
 }
 [data-rail-mode="pinned"] .work-progress{ display: block; }
 
+/* The attribute lands on the <section> itself. A pinned stage is already a full
+   viewport tall and centres its own contents, so .section's padding stacks dead
+   space on top of breathing room the rail supplies for free — drop it and let
+   the hairline divider butt straight up against the stage. The default mode
+   keeps the normal section rhythm, where there is no such slack. */
+[data-rail-mode="pinned"]{ padding-block: 0; }
+
+/* Same reasoning for the seam either side of it: the neighbouring sections'
+   padding is landing against a stage that already reserves its own margin, so
+   two lots of breathing room stack into a dead band. Trim both to a hairline
+   gap rather than the full section rhythm. */
+.section:has(+ [data-rail-mode="pinned"]){ padding-bottom: var(--space-8); }
+[data-rail-mode="pinned"] + .section{ padding-top: var(--space-8); }
+
 /* The pinned stage has one viewport-height budget to spend on heading, cards and
    bar. Tighten the heading and let the media crop harder rather than letting a
    short laptop screen push the progress bar off the bottom. */

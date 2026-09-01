@@ -210,102 +210,129 @@
     </section>
 
     <!-- ---------------------- Work ----------------------- -->
-    <section class="section" id="work" aria-labelledby="work-title" data-mask>
-        <div class="container">
-            <h2 class="section-title scroll-fade" id="work-title">Selected work</h2>
+    <!-- The cards sit on one horizontal line. With JS on, wide enough, and motion
+         allowed, main.js pins the stage and drives the line sideways off vertical
+         scroll; otherwise the same line is a plain swipeable strip (see style.css §9). -->
+    <section class="section" id="work" aria-labelledby="work-title" data-work-rail>
+        <div class="work-rail" data-rail>
+            <div class="work-stage" data-rail-stage>
+                <!-- Inside the stage, so the heading stays with the cards for the
+                     whole traverse instead of scrolling away above them. -->
+                <div class="container">
+                    <h2 class="section-title scroll-fade" id="work-title">Selected work</h2>
+                </div>
 
-            <div class="work-grid">
-                <article class="card scroll-fade">
-                    <div class="card-media">
-                        <picture>
-                            <source srcset="images/cpu-preview.webp" type="image/webp">
-                            <img src="images/cpu-preview.jpg" alt="RTL waveform simulation of the CPU in Intel Quartus II"
-                                 width="840" height="564" loading="lazy" decoding="async">
-                        </picture>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title"><a href="cpu.html">8-Bit CPU</a></h3>
-                        <p class="card-desc">
-                            I built it from the parts up: ALU, registers, control unit, memory. Every module
-                            was verified in simulation before anything got wired together.
-                        </p>
-                        <ul class="chips">
-                            <li>VHDL</li>
-                            <li>Quartus II</li>
-                            <li>RTL Sim</li>
-                        </ul>
-                        <span class="card-more">View project <svg aria-hidden="true"><use href="#i-arrow-ur"></use></svg></span>
-                    </div>
-                </article>
+                <!-- tabindex is in the markup, not added by JS: while this is a real scroll
+                     container it must be keyboard-reachable even with JS off. main.js
+                     strips it once the rail is pinned and there is nothing to scroll. -->
+                <div class="work-viewport" data-rail-viewport tabindex="0"
+                     role="group" aria-labelledby="work-title">
+                    <ul class="work-track" data-rail-track>
+                        <li class="work-item">
+                            <article class="card">
+                                <div class="card-media">
+                                    <picture>
+                                        <source srcset="images/cpu-preview.webp" type="image/webp">
+                                        <img src="images/cpu-preview.jpg" alt="RTL waveform simulation of the CPU in Intel Quartus II"
+                                             width="840" height="564" loading="lazy" decoding="async">
+                                    </picture>
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title"><a href="cpu.html">8-Bit CPU</a></h3>
+                                    <p class="card-desc">
+                                        I built it from the parts up: ALU, registers, control unit, memory. Every module
+                                        was verified in simulation before anything got wired together.
+                                    </p>
+                                    <ul class="chips">
+                                        <li>VHDL</li>
+                                        <li>Quartus II</li>
+                                        <li>RTL Sim</li>
+                                    </ul>
+                                    <span class="card-more">View project <svg aria-hidden="true"><use href="#i-arrow-ur"></use></svg></span>
+                                </div>
+                            </article>
+                        </li>
 
-                <article class="card scroll-fade" style="--scroll-fade-delay: 0.1s">
-                    <div class="card-media">
-                        <picture>
-                            <source srcset="images/blackhawk.webp" type="image/webp">
-                            <img src="images/blackhawk.png" alt="The Blackhawk AI application title screen"
-                                 width="800" height="781" loading="lazy" decoding="async">
-                        </picture>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title"><a href="blackhawk.html">Blackhawk AI</a></h3>
-                        <p class="card-desc">
-                            A knowledge-base app built for a client. Semantic search over a 700-chunk
-                            corpus, answering in under four seconds. Deployed, with an admin panel.
-                        </p>
-                        <ul class="chips">
-                            <li>Flask</li>
-                            <li>Supabase</li>
-                            <li>pgvector</li>
-                        </ul>
-                        <span class="card-more">View project <svg aria-hidden="true"><use href="#i-arrow-ur"></use></svg></span>
-                    </div>
-                </article>
+                        <li class="work-item">
+                            <article class="card">
+                                <div class="card-media">
+                                    <picture>
+                                        <source srcset="images/blackhawk.webp" type="image/webp">
+                                        <img src="images/blackhawk.png" alt="The Blackhawk AI application title screen"
+                                             width="800" height="781" loading="lazy" decoding="async">
+                                    </picture>
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title"><a href="blackhawk.html">Blackhawk AI</a></h3>
+                                    <p class="card-desc">
+                                        A knowledge-base app built for a client. Semantic search over a 700-chunk
+                                        corpus, answering in under four seconds. Deployed, with an admin panel.
+                                    </p>
+                                    <ul class="chips">
+                                        <li>Flask</li>
+                                        <li>Supabase</li>
+                                        <li>pgvector</li>
+                                    </ul>
+                                    <span class="card-more">View project <svg aria-hidden="true"><use href="#i-arrow-ur"></use></svg></span>
+                                </div>
+                            </article>
+                        </li>
 
-                <article class="card scroll-fade" style="--scroll-fade-delay: 0.2s">
-                    <div class="card-media">
-                        <picture>
-                            <source srcset="images/boostpedal-preview.webp" type="image/webp">
-                            <img src="images/boostpedal-preview.png" alt="Detail of the boost pedal's KiCad schematic showing the 2N3904 transistor and its bias network"
-                                 width="800" height="1004" loading="lazy" decoding="async">
-                        </picture>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title"><a href="boostpedal.html">Guitar Boost Pedal</a></h3>
-                        <p class="card-desc">
-                            One transistor, a 9V battery, and a volume pot. It started on a breadboard and
-                            ended up as a fabricated two-layer board.
-                        </p>
-                        <ul class="chips">
-                            <li>Analog</li>
-                            <li>KiCad</li>
-                            <li>PCB Layout</li>
-                        </ul>
-                        <span class="card-more">View project <svg aria-hidden="true"><use href="#i-arrow-ur"></use></svg></span>
-                    </div>
-                </article>
+                        <li class="work-item">
+                            <article class="card">
+                                <div class="card-media">
+                                    <picture>
+                                        <source srcset="images/boostpedal-preview.webp" type="image/webp">
+                                        <img src="images/boostpedal-preview.png" alt="Detail of the boost pedal's KiCad schematic showing the 2N3904 transistor and its bias network"
+                                             width="800" height="1004" loading="lazy" decoding="async">
+                                    </picture>
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title"><a href="boostpedal.html">Guitar Boost Pedal</a></h3>
+                                    <p class="card-desc">
+                                        One transistor, a 9V battery, and a volume pot. It started on a breadboard and
+                                        ended up as a fabricated two-layer board.
+                                    </p>
+                                    <ul class="chips">
+                                        <li>Analog</li>
+                                        <li>KiCad</li>
+                                        <li>PCB Layout</li>
+                                    </ul>
+                                    <span class="card-more">View project <svg aria-hidden="true"><use href="#i-arrow-ur"></use></svg></span>
+                                </div>
+                            </article>
+                        </li>
 
-                <article class="card scroll-fade" style="--scroll-fade-delay: 0.3s">
-                    <div class="card-media">
-                        <picture>
-                            <source srcset="images/boostconverter-preview.webp" type="image/webp">
-                            <img src="images/boostconverter-preview.jpg" alt="The fabricated boost converter PCB: a 555 timer, blue trimmer potentiometer, 33mH inductor, and electrolytic output capacitor on a green two-layer board"
-                                 width="840" height="564" loading="lazy" decoding="async">
-                        </picture>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title"><a href="boostconverter.html">555 Boost Converter</a></h3>
-                        <p class="card-desc">
-                            5V in, 12V out. Every value derived on paper, checked against a KiCad
-                            simulation, then measured on a board we had fabricated.
-                        </p>
-                        <ul class="chips">
-                            <li>555 Timer</li>
-                            <li>KiCad</li>
-                            <li>PCB Layout</li>
-                        </ul>
-                        <span class="card-more">View project <svg aria-hidden="true"><use href="#i-arrow-ur"></use></svg></span>
-                    </div>
-                </article>
+                        <li class="work-item">
+                            <article class="card">
+                                <div class="card-media">
+                                    <picture>
+                                        <source srcset="images/boostconverter-preview.webp" type="image/webp">
+                                        <img src="images/boostconverter-preview.jpg" alt="The fabricated boost converter PCB: a 555 timer, blue trimmer potentiometer, 33mH inductor, and electrolytic output capacitor on a green two-layer board"
+                                             width="840" height="564" loading="lazy" decoding="async">
+                                    </picture>
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title"><a href="boostconverter.html">555 Boost Converter</a></h3>
+                                    <p class="card-desc">
+                                        5V in, 12V out. Every value derived on paper, checked against a KiCad
+                                        simulation, then measured on a board we had fabricated.
+                                    </p>
+                                    <ul class="chips">
+                                        <li>555 Timer</li>
+                                        <li>KiCad</li>
+                                        <li>PCB Layout</li>
+                                    </ul>
+                                    <span class="card-more">View project <svg aria-hidden="true"><use href="#i-arrow-ur"></use></svg></span>
+                                </div>
+                            </article>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="container">
+                    <div class="work-progress" aria-hidden="true"><span></span></div>
+                </div>
             </div>
         </div>
     </section>

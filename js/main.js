@@ -97,9 +97,83 @@
     const storyBlocks = indexLinks.map((a) => document.getElementById(a.hash.slice(1)));
     let activeIndex = -1;
 
-    if (!reducedMotion && (fadeEls.length || maskEls.length || storyBlocks.length)) {
+    /* Work rail: the cards sit on one horizontal line that is driven sideways by
+       vertical scroll. Pinning is opt-in per environment — measureRail() sets
+       data-rail-mode="pinned" only when there is room and something to travel,
+       and tears it back down otherwise, leaving the CSS default (a plain
+       swipeable strip) in charge. */
+    const railSection = document.querySelector('[data-work-rail]');
+    const rail = railSection && railSection.querySelector('[data-rail]');
+    const railStage = railSection && railSection.querySelector('[data-rail-stage]');
+    const railViewport = railSection && railSection.querySelector('[data-rail-viewport]');
+    const railTrack = railSection && railSection.querySelector('[data-rail-track]');
+    const railMq = window.matchMedia('(min-width: 761px)');
+    let railTravel = 0;   // px of horizontal travel the line has left to give
+    let railStageH = 0;   // cached: reading these per frame would break the
+    let railTop = 0;      // read/write split in update()
+
+    if (!reducedMotion && (fadeEls.length || maskEls.length || storyBlocks.length || rail)) {
         let vh = window.innerHeight;
         let queued = false;
+
+        /* A layout *write*, so it never runs inside update(). Recomputed on
+           resize, on breakpoint change, and whenever the track's own size
+           settles (fonts, image decode). */
+        const unpinRail = () => {
+            railTravel = 0;
+            railSection.removeAttribute('data-rail-mode');
+            rail.style.removeProperty('height');
+            railTrack.style.removeProperty('--rail-x');
+            railSection.style.removeProperty('--rail-progress');
+            // A native scroll container has to be reachable by keyboard.
+            railViewport.tabIndex = 0;
+        };
+
+        const measureRail = () => {
+            if (!rail) return;
+
+            if (!railMq.matches) {
+                unpinRail();
+                return;
+            }
+
+            // Pin first: the stage only takes its sticky height under the
+            // attribute, and that height is what the travel is measured against.
+            railSection.setAttribute('data-rail-mode', 'pinned');
+            // Anything the reader swiped in the native strip is frozen in place
+            // by overflow:clip and would sit on top of our transform.
+            railViewport.scrollLeft = 0;
+
+            // Chrome leaves a flex container's trailing padding out of
+            // scrollWidth once its children overflow, which would strand the
+            // last card half off-screen at the end of the run. Derive the
+            // content edge from the last card instead and take whichever is
+            // larger, so this stays correct if that behaviour ever changes.
+            // offsetLeft is layout-based, so the track's own transform does not
+            // pollute it, and both offsets share an offsetParent.
+            const last = railTrack.lastElementChild;
+            const padEnd = parseFloat(getComputedStyle(railTrack).paddingInlineEnd) || 0;
+            const contentEnd = last
+                ? last.offsetLeft - railTrack.offsetLeft + last.offsetWidth + padEnd
+                : 0;
+            const travel = Math.max(railTrack.scrollWidth, contentEnd) - railViewport.clientWidth;
+
+            if (travel <= 0) {
+                // Wide screen, short list: the whole line already fits, so there
+                // is nothing to scroll and pinning would just stall the page.
+                unpinRail();
+                return;
+            }
+
+            railTravel = travel;
+            railStageH = railStage.offsetHeight;
+            railTop = parseFloat(getComputedStyle(railStage).top) || 0;
+
+            const height = `${Math.round(railStageH + railTravel)}px`;
+            if (rail.style.height !== height) rail.style.height = height;
+
+            railViewport.removeAttribute('tabindex');   // nothing left to scroll
+        };
 
         const update = () => {
             queued = false;
@@ -109,6 +183,7 @@
             const fadeRects = fadeEls.map((el) => el.getBoundingClientRect());
             const maskRects = maskEls.map((el) => el.getBoundingClientRect());
             const storyRects = storyBlocks.map((el) => (el ? el.getBoundingClientRect() : null));
+            const railRect = railTravel > 0 ? rail.getBoundingClientRect() : null;
 
             const startLine = vh * FADE_START;
             const endLine = vh * FADE_END;
@@ -141,6 +216,16 @@
                 }
             }
 
+            // Rail progress: 0 the moment the stage sticks, 1 when the last card
+            // has landed. The transform lives on the track so it never collides
+            // with .card:hover's own translateY.
+            if (railRect) {
+                let p = (railTop - railRect.top) / (railRect.height - railStageH);
+                p = p < 0 ? 0 : p > 1 ? 1 : p;
+                railTrack.style.setProperty('--rail-x', `${(-p * railTravel).toFixed(1)}px`);
+                railSection.style.setProperty('--rail-progress', p.toFixed(4));
+            }
+
             document.documentElement.classList.toggle('has-scrolled', window.scrollY > 0);
         };
 
@@ -154,10 +239,44 @@
         window.addEventListener('scroll', schedule, { passive: true });
         window.addEventListener('resize', () => {
             vh = window.innerHeight;
+            measureRail();
             schedule();
         }, { passive: true });
 
+        if (rail) {
+            // Same breakpoint-sync shape as the nav drawer above.
+            railMq.addEventListener('change', () => {
+                measureRail();
+                schedule();
+            });
+
+            // The track's width settles after webfonts and image decode land.
+            if (window.ResizeObserver) {
+                new ResizeObserver(() => {
+                    measureRail();
+                    schedule();
+                }).observe(railTrack);
+            }
+
+            // While pinned the viewport is overflow:clip, so the browser cannot
+            // bring a focused card into view itself — scroll the page to the
+            // offset that centres it instead. Each card has exactly one
+            // focusable element (the stretched title link), so Tab walks the
+            // projects in order and the line follows.
+            railTrack.addEventListener('focusin', (e) => {
+                if (railSection.getAttribute('data-rail-mode') !== 'pinned') return;
+                const item = e.target.closest('.work-item');
+                if (!item || railTravel <= 0) return;
+
+                const centred = item.offsetLeft + item.offsetWidth / 2 - railViewport.clientWidth / 2;
+                const x = centred < 0 ? 0 : centred > railTravel ? railTravel : centred;
+                const railDocTop = rail.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo({ top: railDocTop - railTop + x, behavior: 'auto' });
+            });
+        }
+
         // Run once before first paint so nothing flashes in at full opacity
+        measureRail();
         update();
     }
 

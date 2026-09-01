@@ -569,13 +569,114 @@ html.has-scrolled [data-mask]{
 .skill-row dd{ margin: 0; color: var(--text-muted); }
 
 /* --------------------------------------------------------------------------
-   9. Home — work cards
+   9. Home — work rail
    -------------------------------------------------------------------------- */
-.work-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
-    gap: var(--space-6);
+/* The four cards live on one horizontal line in both modes. What changes is who
+   drives it sideways:
+
+     default          the viewport is a real scroll container and the reader
+                      swipes/drags it. This is the baseline, so with JS off, on
+                      a phone, or under reduced motion the rail still works.
+     [data-rail-mode="pinned"]
+                      main.js gives .work-rail a tall height, .work-stage sticks
+                      to the header, and vertical scroll is translated into
+                      --rail-x on the track. Set only when it can be honoured. */
+
+/* Horizontal echo of the vertical band-pass mask in §4: the line dissolves at
+   both edges rather than ending on a hard cut. The fade is exactly as wide as
+   the track's gutter, so a card parked at either end of the run sits fully
+   opaque and only dissolves once it travels into the margin. Vertical padding
+   keeps the .card:hover lift inside the mask box, which clips on every side. */
+.work-rail{
+    position: relative;
+    --rail-gutter: max(clamp(1.25rem, 5vw, 4rem), calc((100vw - 1200px) / 2));
 }
+
+.work-viewport{
+    padding-block: var(--space-2);
+    -webkit-mask-image: linear-gradient(to right,
+        transparent 0,
+        #000 var(--rail-gutter),
+        #000 calc(100% - var(--rail-gutter)),
+        transparent 100%);
+            mask-image: linear-gradient(to right,
+        transparent 0,
+        #000 var(--rail-gutter),
+        #000 calc(100% - var(--rail-gutter)),
+        transparent 100%);
+
+    /* Default mode: a genuine scroll container. */
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+.work-viewport::-webkit-scrollbar{ display: none; }
+
+.work-track{
+    display: flex;
+    align-items: stretch;          /* every card takes the tallest card's height */
+    gap: var(--space-6);
+    margin: 0;
+    /* Matches .container's inline gutter, so the first card's left edge lands
+       under the section title rather than on the screen edge. */
+    padding-inline: var(--rail-gutter);
+}
+
+.work-item{
+    flex: 0 0 clamp(19rem, 30vw, 28rem);
+    display: flex;
+    scroll-snap-align: start;
+}
+.work-item > .card{ flex: 1; }
+
+/* Only meaningful while pinned — in default mode the scrollbar-less strip is
+   its own affordance and the bar would never move. */
+.work-progress{
+    display: none;
+    height: 1px;
+    margin-top: var(--space-6);
+    background: var(--border);
+}
+.work-progress > span{
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    transform: scaleX(var(--rail-progress, 0));
+    transform-origin: left center;
+}
+
+/* --- Pinned mode --------------------------------------------------------- */
+/* clip, not hidden: `hidden` would leave the viewport programmatically
+   scrollable, so tabbing to an off-screen card sets scrollLeft behind our back
+   and desyncs it from the transform for good. `clip` is not a scroll container.
+   (Same trap as the body rule in §2.) main.js scrolls focused cards into view
+   itself, since nothing else can. */
+[data-rail-mode="pinned"] .work-viewport{
+    overflow-x: clip;
+    overflow-y: visible;
+    scroll-snap-type: none;
+}
+[data-rail-mode="pinned"] .work-stage{
+    position: sticky;
+    top: var(--nav-h);
+    height: calc(100dvh - var(--nav-h));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+[data-rail-mode="pinned"] .work-track{
+    transform: translate3d(var(--rail-x, 0px), 0, 0);
+    will-change: transform;
+}
+[data-rail-mode="pinned"] .work-progress{ display: block; }
+
+/* The pinned stage has one viewport-height budget to spend on heading, cards and
+   bar. Tighten the heading and let the media crop harder rather than letting a
+   short laptop screen push the progress bar off the bottom. */
+[data-rail-mode="pinned"] .section-title{ margin-bottom: var(--space-6); }
+[data-rail-mode="pinned"] .card-media{ max-height: 34dvh; }
 
 .card{
     position: relative;
@@ -1155,6 +1256,9 @@ html.has-scrolled [data-mask]{
 }
 
 @media (max-width: 560px){
+    /* One card plus a peek, so the strip still announces itself as scrollable. */
+    .work-item{ flex-basis: 82vw; }
+
     .wordmark{ font-size: 0.8125rem; letter-spacing: 0.08em; }
     .wordmark svg{ width: 1.5rem; height: 1.5rem; }
     .hero{ min-height: auto; }

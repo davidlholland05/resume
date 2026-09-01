@@ -940,6 +940,14 @@ html.has-scrolled [data-mask]{
 .project-figure--portrait{
     max-width: min(100%, 28rem);
 }
+/* Opt-in centring for a capped figure with a caption short enough that holding
+   the prose left margin buys nothing. */
+.project-figure--center{
+    margin-inline: auto;
+}
+.project-figure--center figcaption{
+    text-align: center;
+}
 .project-figure figcaption{
     margin-top: var(--space-3);
     font-size: var(--step--1);
